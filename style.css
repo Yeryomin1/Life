@@ -1,0 +1,59 @@
+canvas {
+    border: 1px dashed black;
+}
+
+.menu button
+{
+display: inline;
+font-size:1.0em;
+font-family:verdana;     
+}
+
+.modal button
+{
+display: inline;
+font-size:0.8em;
+font-family:verdana;     
+}
+
+#setStart
+{
+color:green;
+}
+
+#setStop
+{
+color:red;
+}
+
+#addGlider
+{
+color:black;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    overflow: auto;
+    background-color: #4a4aff8c;
+}
+.modal .modalContent {
+    display: none;    
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.modal .modalContent .closeModalWindow {
+    color: #aaa;
+    float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+}
