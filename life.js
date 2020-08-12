@@ -109,15 +109,15 @@
         }
 
         add.onclick =  function(){
-            let userX = Number(prompt("Введите х левого верхнего угла глайдера", String(WORLD_WIDTH*0.5-2)))-1;
-            let userY = Number(prompt("Введите y левого верхнего угла глайдера",String(WORLD_HEIGHT*0.5-2)));            
+            let userX = Number(prompt("Enter the abscissa of the upper-left corner of the glider", String(WORLD_WIDTH*0.5-2)))-1;
+            let userY = Number(prompt("Enter the ordinate of the upper-left corner of the glider",String(WORLD_HEIGHT*0.5-2)));            
             game.addGlider(userX, WORLD_HEIGHT-userY);
         }
 
         speedModalWindow.onclick = function () {        
             game.windows._modal.style.display = "block";
             game.windows.speedModal.style.display = "block";            
-            document.getElementById("frequency").innerHTML = "Частота обновления: " + game._freq + " Гц"; 
+            document.getElementById("frequency").innerHTML = "frequency: " + game._freq + " Hz"; 
         }
 
         addModalWindow.onclick = function () {      
