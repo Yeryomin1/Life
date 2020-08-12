@@ -35,7 +35,7 @@
                 clearInterval(interval);
                 interval = setInterval(this.draw, 1000/this._freq);
             }
-            document.getElementById("frequency").innerHTML = "Частота обновления: " + this._freq + " Гц";
+            document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
         };
         
         game.freqDown = function(){
@@ -45,7 +45,7 @@
                 clearInterval(interval);
                 interval = setInterval(this.draw, 1000/this._freq);
             }
-            document.getElementById("frequency").innerHTML = "Частота обновления: " + this._freq + " Гц";
+            document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
         }
 
         game.setStop = function(command){
