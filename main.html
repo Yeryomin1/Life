@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,4 +36,43 @@
     <body>
         <canvas id = "drawingCanvas" width="640" height="480"></canvas>
     </body>
+=======
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Life</title>
+        <link rel="stylesheet" type="text/css" href='style.css' />
+        <script src="life.js"></script>
+        <div class="menu">
+        <button id="setStart">Старт</button>   
+        <button id="setStop">Стоп</button>         
+        <button id="addGlider">Добавить глайдер</button>
+        <button id="speedModalWindow">Скорость</button>
+        <button id="addModalWindow">Добавление</button>                         
+        </div>
+
+
+
+        <div id="modalWindow" class="modal">
+          <div id="speedWindow" class="modalContent">
+            <span class="closeModalWindow">×</span>
+            <p>Управление скоростью игры</p>
+            <p id="frequency"></p>  
+            <button id="faster">Быстрее</button>
+            <button id="slower">Медленнее</button>
+          </div>
+          <div id="addWindow" class="modalContent">
+            <span class="closeModalWindow">×</span>
+            <p>Управление добавкой</p>       
+            <button id="add">Добавка</button>
+          </div>
+        </div>  
+
+       
+        
+    </head>
+    <body>
+        <canvas id = "drawingCanvas" width="640" height="480"></canvas>
+    </body>
+>>>>>>> 761fdd70a6d7e92c651c2de8cb46d045c319bcf9
 </html>

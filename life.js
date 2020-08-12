@@ -39,7 +39,7 @@
         };
         
         game.freqDown = function(){
-            if(this._freq==1) alert("Скорость минимальна");
+            if(this._freq==1) alert("Minimum speed reached");
             else {
                 this._freq /= 2;
                 clearInterval(interval);
