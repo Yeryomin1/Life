@@ -4,9 +4,13 @@
 
         //код рисования
         //размер поля:
+        const CANVAS_WIDTH = 640;
+        const CANVAS_HEIGHT = 480;
+        const PLOT_HEIGHT = 100;
+
         const CELL_SIZE = 10;
-        const WORLD_WIDTH = 640/CELL_SIZE;
-        const WORLD_HEIGHT = 480/CELL_SIZE;
+        const WORLD_WIDTH = CANVAS_WIDTH/CELL_SIZE;
+        const WORLD_HEIGHT = (CANVAS_HEIGHT - PLOT_HEIGHT)/CELL_SIZE;
 
 
         //массив клеток:
