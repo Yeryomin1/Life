@@ -62,7 +62,8 @@
 
             //перерисовка:
             drawLife(game.model);
-            game.model = game.nextGenerationModel(game.model);           
+            drawPlot(game.model);
+            game.model = game.nextGenerationModel(game.model);
         }
 
 
@@ -200,6 +201,33 @@
                 context.lineTo(cellSize*WORLD_WIDTH,cellSize*count);
                 context.stroke();                
             } 
+        }
+
+        function drawPlot(data){
+            drawAxisX();
+            drawAxisY();
+        }
+
+
+        function drawAxisX(){
+            const ORIGIN_Y = 20;
+            context.beginPath();
+            context.lineWidth = 3;
+            context.strokeStyle = "#000";
+            context.lineCap = "butt";
+            context.moveTo(0, CANVAS_HEIGHT - ORIGIN_Y);
+            context.lineTo(CANVAS_WIDTH,CANVAS_HEIGHT - ORIGIN_Y);
+            context.stroke();     
+        }
+
+        function drawAxisY(){
+            context.beginPath();
+            context.lineWidth = 3;
+            context.strokeStyle = "#000";
+            context.lineCap = "butt";
+            context.moveTo(0, CANVAS_HEIGHT);
+            context.lineTo(0, CANVAS_HEIGHT - PLOT_HEIGHT);
+            context.stroke();     
         }
         
 //модальное окно для управления:
