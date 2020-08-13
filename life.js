@@ -7,6 +7,8 @@
         const CANVAS_WIDTH = 640;
         const CANVAS_HEIGHT = 480;
         const PLOT_HEIGHT = 100;
+        const ORIGIN_Y = 20;
+        const ORIGIN_X = 40;
 
         const CELL_SIZE = 10;
         const WORLD_WIDTH = CANVAS_WIDTH/CELL_SIZE;
@@ -210,24 +212,43 @@
 
 
         function drawAxisX(){
-            const ORIGIN_Y = 20;
             context.beginPath();
-            context.lineWidth = 3;
-            context.strokeStyle = "#000";
+            context.lineWidth = 2;
+            context.strokeStyle = "black";
             context.lineCap = "butt";
+            //axis line:
             context.moveTo(0, CANVAS_HEIGHT - ORIGIN_Y);
-            context.lineTo(CANVAS_WIDTH,CANVAS_HEIGHT - ORIGIN_Y);
-            context.stroke();     
+            context.lineTo(CANVAS_WIDTH, CANVAS_HEIGHT - ORIGIN_Y);
+            context.stroke();
+            //score:
+            let scoreStep = (CANVAS_WIDTH - ORIGIN_X)/6;
+            let labelLength = 8;
+            for (let i = 1; i < 6; i++){
+            context.moveTo(ORIGIN_X + i*scoreStep, CANVAS_HEIGHT - ORIGIN_Y - labelLength/2);
+            context.lineTo(ORIGIN_X + i*scoreStep, CANVAS_HEIGHT - ORIGIN_Y + labelLength/2);
+            context.stroke();    
+            }
+            
+            
         }
 
         function drawAxisY(){
             context.beginPath();
-            context.lineWidth = 3;
-            context.strokeStyle = "#000";
+            context.lineWidth = 2;
+            context.strokeStyle = "black";
             context.lineCap = "butt";
-            context.moveTo(0, CANVAS_HEIGHT);
-            context.lineTo(0, CANVAS_HEIGHT - PLOT_HEIGHT);
-            context.stroke();     
+            //axis line:
+            context.moveTo(ORIGIN_X, CANVAS_HEIGHT);
+            context.lineTo(ORIGIN_X, CANVAS_HEIGHT - PLOT_HEIGHT);
+            context.stroke();
+            //score:
+            let scoreStep = (PLOT_HEIGHT - ORIGIN_Y)/3;
+            let labelLength = 8;
+            for (let i = 1; i < 3; i++){
+            context.moveTo(ORIGIN_X - labelLength/2, CANVAS_HEIGHT - ORIGIN_Y - i*scoreStep);
+            context.lineTo(ORIGIN_X + labelLength/2, CANVAS_HEIGHT - ORIGIN_Y - i*scoreStep);
+            context.stroke(); 
+            }      
         }
         
 //модальное окно для управления:
