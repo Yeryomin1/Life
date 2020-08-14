@@ -32,6 +32,8 @@
         game._stop = true;
         game._freq = 2;        //частота обновления:
         game.windows = {};
+        game.plotData = [];
+        game.stepNum = 0;
 
     //интерфейс объекта:
         game.freqUp = function(){
@@ -64,7 +66,16 @@
 
             //перерисовка:
             drawLife(game.model);
-            drawPlot(game.model);
+            drawPlot(game.plotData, game.stepNum);
+
+            /*
+if(game.stepNum>10){
+            alert(game.stepNum);
+            alert(game.plotData[game.stepNum]);    
+}
+*/
+
+
             game.model = game.nextGenerationModel(game.model);
         }
 
@@ -72,13 +83,14 @@
 
         //функция преобразования массива на шаг вперед:        
         game.nextGenerationModel = function (array){//лишняя передача аргумента, для метода не нужно
+           game.stepNum++;
             //проверка состояния "Пауза":
             if(game._stop) return array;
             //реализуются правила игры:
             let result = [];
             for (let i = 0; i < array.length; i++)
             result.push(array[i].slice());
-    
+            let total = 0;
             let summs = summArray(array);
             for(i = 0;i<WORLD_WIDTH; i++)
                 for(j = 0;j<WORLD_HEIGHT; j++){
@@ -86,8 +98,14 @@
                         if(summs[i][j]!=2&&summs[i][j]!=3)
                         result[i][j] = 0;
                     }
-                    else if(summs[i][j]==3)result[i][j] = 1;
+                    else if(summs[i][j]==3){
+                        result[i][j] = 1;
+                        total++;
+                    }
                 }
+
+        if(game.stepNum>100) game.plotData.shift();
+        game.plotData.push(total);                       
         return result;
         }
 
@@ -205,13 +223,57 @@
             } 
         }
 
-        function drawPlot(data){
-            drawAxisX();
+        function drawPlot(data, steps){
+            drawAxisX(101);
             drawAxisY();
+            drawData(data, steps);
+        }
+
+        function drawData(dataArr, stepsNum){
+            let columnWidth = (CANVAS_WIDTH - ORIGIN_X)/100;
+            context.beginPath();
+            context.lineWidth = 5;
+            context.strokeStyle = "red";
+            context.lineCap = "butt"; 
+
+/*
+            //test
+            dataArr[0] = 70;
+            dataArr[1] = 50;
+            dataArr[2] = 80;
+            dataArr[3] = 30;
+            dataArr[4] = 70;
+            dataArr[5] = 100;
+            stepsNum = 5;
+*/
+
+
+
+            for(let i = 1; i<=stepsNum; i++){
+            //data point column line:
+            context.moveTo(ORIGIN_X + i*columnWidth, CANVAS_HEIGHT - ORIGIN_Y);
+            context.lineTo(ORIGIN_X + i*columnWidth, CANVAS_HEIGHT - ORIGIN_Y - dataArr[i-1]);
+            context.stroke();                
+            }
+
         }
 
 
-        function drawAxisX(){
+        function drawAxisX(maxX){
+            let range = maxX;
+            let powerOfTen = 0;
+            while (range>10) {
+                range/=10;
+                powerOfTen++;
+            }
+
+            //alert(range);
+            //alert(powerOfTen);
+            range = Math.ceil(range)*Math.pow(10, powerOfTen);
+
+
+            //alert("result " + range);
+
             context.beginPath();
             context.lineWidth = 2;
             context.strokeStyle = "black";
@@ -228,7 +290,10 @@
             context.lineTo(ORIGIN_X + i*scoreStep, CANVAS_HEIGHT - ORIGIN_Y + labelLength/2);
             context.stroke();    
             }
-            
+            //text labels:
+            context.fillStyle = "black";
+            context.font = "15pt Arial";
+            context.fillText(range, 0, CANVAS_HEIGHT - ORIGIN_Y);            
             
         }
 
@@ -248,7 +313,8 @@
             context.moveTo(ORIGIN_X - labelLength/2, CANVAS_HEIGHT - ORIGIN_Y - i*scoreStep);
             context.lineTo(ORIGIN_X + labelLength/2, CANVAS_HEIGHT - ORIGIN_Y - i*scoreStep);
             context.stroke(); 
-            }      
+            }
+     
         }
         
 //модальное окно для управления:
@@ -280,6 +346,6 @@
        if (event.target == game.windows._modal) game.windows._modal.style.display = "none";
    }
           
-    };
+};
     
 
