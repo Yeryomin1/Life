@@ -97,6 +97,7 @@ if(game.stepNum>10){
                     if(array[i][j]==1){
                         if(summs[i][j]!=2&&summs[i][j]!=3)
                         result[i][j] = 0;
+                        else total++;
                     }
                     else if(summs[i][j]==3){
                         result[i][j] = 1;
