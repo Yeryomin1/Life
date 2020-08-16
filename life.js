@@ -76,25 +76,25 @@ if(game.stepNum>10){
 */
 
 
-            game.model = game.nextGenerationModel(game.model);
+            game.model = game.nextGenerationModel();
         }
 
 
 
         //функция преобразования массива на шаг вперед:        
-        game.nextGenerationModel = function (array){//лишняя передача аргумента, для метода не нужно
+        game.nextGenerationModel = function (){
            game.stepNum++;
             //проверка состояния "Пауза":
-            if(game._stop) return array;
+            if(game._stop) return this.model;
             //реализуются правила игры:
             let result = [];
-            for (let i = 0; i < array.length; i++)
-            result.push(array[i].slice());
+            for (let i = 0; i < this.model.length; i++)
+            result.push(this.model[i].slice());
             let total = 0;
-            let summs = summArray(array);
+            let summs = summArray(this.model);
             for(i = 0;i<WORLD_WIDTH; i++)
                 for(j = 0;j<WORLD_HEIGHT; j++){
-                    if(array[i][j]==1){
+                    if(this.model[i][j]==1){
                         if(summs[i][j]!=2&&summs[i][j]!=3)
                         result[i][j] = 0;
                         else total++;
