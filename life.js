@@ -225,13 +225,13 @@ if(game.stepNum>10){
         }
 
         function drawPlot(data, steps){
-            drawAxisX(101);
+            drawAxisX(100);
             drawAxisY();
             drawData(data, steps);
         }
 
-        function drawData(dataArr, stepsNum){
-            let columnWidth = (CANVAS_WIDTH - ORIGIN_X)/100;
+        function drawData(dataArr, stepsNum){//объединить в объект с кодом осей
+            let columnWidth = (CANVAS_WIDTH - ORIGIN_X)/120;
             context.beginPath();
             context.lineWidth = 5;
             context.strokeStyle = "red";
@@ -252,6 +252,7 @@ if(game.stepNum>10){
 
             for(let i = 1; i<=stepsNum; i++){
             //data point column line:
+            
             context.moveTo(ORIGIN_X + i*columnWidth, CANVAS_HEIGHT - ORIGIN_Y);
             context.lineTo(ORIGIN_X + i*columnWidth, CANVAS_HEIGHT - ORIGIN_Y - dataArr[i-1]);
             context.stroke();                
@@ -275,6 +276,8 @@ if(game.stepNum>10){
 
             //alert("result " + range);
 
+
+
             context.beginPath();
             context.lineWidth = 2;
             context.strokeStyle = "black";
@@ -293,8 +296,11 @@ if(game.stepNum>10){
             }
             //text labels:
             context.fillStyle = "black";
-            context.font = "15pt Arial";
-            context.fillText(range, 0, CANVAS_HEIGHT - ORIGIN_Y);            
+            context.font = "10pt Arial";
+            for (let i = 1; i < 6; i++){
+            context.fillText(i*range/5, ORIGIN_X + i*scoreStep - 5, CANVAS_HEIGHT - ORIGIN_Y + labelLength/2 + 12);      
+                }           
+          
             
         }
 
