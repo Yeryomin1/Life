@@ -83,9 +83,9 @@ if(game.stepNum>10){
 
         //функция преобразования массива на шаг вперед:        
         game.nextGenerationModel = function (){
-           game.stepNum++;
             //проверка состояния "Пауза":
             if(game._stop) return this.model;
+           game.stepNum++;            
             //реализуются правила игры:
             let result = [];
             for (let i = 0; i < this.model.length; i++)
@@ -225,7 +225,7 @@ if(game.stepNum>10){
         }
 
         function drawPlot(data, steps){
-            drawAxisX(100);
+            drawAxisX(100, steps);
             drawAxisY();
             drawData(data, steps);
         }
@@ -261,7 +261,7 @@ if(game.stepNum>10){
         }
 
 
-        function drawAxisX(maxX){
+        function drawAxisX(maxX, stepsNumber){
             let range = maxX;
             let powerOfTen = 0;
             while (range>10) {
@@ -275,6 +275,7 @@ if(game.stepNum>10){
 
 
             //alert("result " + range);
+            
 
 
 
@@ -295,10 +296,12 @@ if(game.stepNum>10){
             context.stroke();    
             }
             //text labels:
+            let displacement = 0;
+             if (stepsNumber > 90) displacement = stepsNumber - 90;
             context.fillStyle = "black";
             context.font = "10pt Arial";
             for (let i = 1; i < 6; i++){
-            context.fillText(i*range/5, ORIGIN_X + i*scoreStep - 5, CANVAS_HEIGHT - ORIGIN_Y + labelLength/2 + 12);      
+            context.fillText(displacement + i*range/5, ORIGIN_X + i*scoreStep - 5, CANVAS_HEIGHT - ORIGIN_Y + labelLength/2 + 12);      
                 }           
           
             
