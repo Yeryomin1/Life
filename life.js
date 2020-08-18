@@ -171,23 +171,7 @@ window.onload = function () {
     }
 
     plot.drawAxisX = function (maxX, stepsNumber) {
-        let range = maxX;
-        let powerOfTen = 0;
-        while (range > 10) {
-            range /= 10;
-            powerOfTen++;
-        }
-
-        //alert(range);
-        //alert(powerOfTen);
-        range = Math.ceil(range) * Math.pow(10, powerOfTen);
-
-
-        //alert("result " + range);
-
-
-
-
+        let range = plot.range(maxX);
         context.beginPath();
         context.lineWidth = 2;
         context.strokeStyle = "black";
@@ -251,6 +235,15 @@ window.onload = function () {
             context.stroke();
         }
 
+    }
+
+    plot.range = function (maxNum) {
+        let powerOfTen = 0;
+        while (maxNum > 10) {
+            maxNum /= 10;
+            powerOfTen++;
+        }
+        return Math.ceil(maxNum) * Math.pow(10, powerOfTen);
     }
 
 
