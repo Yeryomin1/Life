@@ -174,26 +174,24 @@ window.onload = function () {
         plot.drawData(data, steps);
     }
 
-    plot.setRanges = function(data){
+    plot.setRanges = function (data) {
         plot.xRange = plot.range(100);
 
 
-        if (plot.maxVal < data[data.length - 1]){
-        plot.maxVal = data[data.length - 1];
-        plot.maxValPos = data.length - 1;    
+        if (plot.maxVal < data[data.length - 1]) {
+            plot.maxVal = data[data.length - 1];
+            plot.maxValPos = data.length - 1;
         }
         else plot.maxValPos--;
-        if (plot.maxValPos<0){
+        if (plot.maxValPos < 0) {
             plot.maxVal = data[0];
             for (let i = 1; i < data.length /*- 1*/; i++)
-                if (data[i]>plot.maxVal){
+                if (data[i] > plot.maxVal) {
                     plot.maxVal = data[i];
                     plot.maxValPos = i;
                 }
         }
         plot.yRange = plot.range(plot.maxVal);
-        //if(!game._stop)
-        //alert(plot.maxVal);
     }
 
     plot.drawAxisX = function (stepsNumber) {
@@ -235,12 +233,19 @@ window.onload = function () {
         context.lineTo(ORIGIN_X, CANVAS_HEIGHT - PLOT_HEIGHT);
         context.stroke();
         //score:
-        let scoreStep = (PLOT_HEIGHT - ORIGIN_Y) / 3;
+        let labels = 4;
+        let scoreStep = (PLOT_HEIGHT - ORIGIN_Y) / labels;
         let labelLength = 8;
-        for (let i = 1; i < 3; i++) {
+        for (let i = 1; i < labels; i++) {
             context.moveTo(ORIGIN_X - labelLength / 2, CANVAS_HEIGHT - ORIGIN_Y - i * scoreStep);
             context.lineTo(ORIGIN_X + labelLength / 2, CANVAS_HEIGHT - ORIGIN_Y - i * scoreStep);
             context.stroke();
+        }
+        //text labels:
+        context.fillStyle = "black";
+        context.font = "10pt Arial";
+        for (let i = 1; i < labels; i++) {
+            context.fillText(i * plot.yRange / labels, 10, CANVAS_HEIGHT - ORIGIN_Y - i * scoreStep + 5);
         }
 
     }
@@ -251,12 +256,13 @@ window.onload = function () {
         context.lineWidth = 5;
         context.strokeStyle = "red";
         context.lineCap = "butt";
+        let zoom = (PLOT_HEIGHT - ORIGIN_Y) / plot.yRange;
 
         for (let i = 1; i <= stepsNum; i++) {
             //data point column line:
 
             context.moveTo(ORIGIN_X + i * columnWidth, CANVAS_HEIGHT - ORIGIN_Y);
-            context.lineTo(ORIGIN_X + i * columnWidth, CANVAS_HEIGHT - ORIGIN_Y - dataArr[i - 1]);
+            context.lineTo(ORIGIN_X + i * columnWidth, CANVAS_HEIGHT - ORIGIN_Y - zoom * dataArr[i - 1]);
             context.stroke();
         }
 
