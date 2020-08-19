@@ -165,13 +165,17 @@ window.onload = function () {
 
     //методы графика:
     plot.draw = function (data, steps) {
-        plot.drawAxisX(100, steps);
+        plot.setRanges(data);
+        plot.drawAxisX(steps);
         plot.drawAxisY();
         plot.drawData(data, steps);
     }
 
-    plot.drawAxisX = function (maxX, stepsNumber) {
-        let range = plot.range(maxX);
+    plot.setRanges = function(data){
+        plot.xRange = plot.range(100);
+    }
+
+    plot.drawAxisX = function (stepsNumber) {
         context.beginPath();
         context.lineWidth = 2;
         context.strokeStyle = "black";
@@ -194,7 +198,7 @@ window.onload = function () {
         context.fillStyle = "black";
         context.font = "10pt Arial";
         for (let i = 1; i < 6; i++) {
-            context.fillText(displacement + i * range / 5, ORIGIN_X + i * scoreStep - 5, CANVAS_HEIGHT - ORIGIN_Y + labelLength / 2 + 12);
+            context.fillText(displacement + i * plot.xRange / 5, ORIGIN_X + i * scoreStep - 5, CANVAS_HEIGHT - ORIGIN_Y + labelLength / 2 + 12);
         }
 
 
