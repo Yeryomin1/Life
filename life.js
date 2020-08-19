@@ -38,7 +38,7 @@ window.onload = function () {
     game.plotData = [];
     game.stepNum = 0;
 
-    plot.maxVal = 0;
+    plot.maxVal = 20;
 
     //интерфейс объекта:
     game.freqUp = function () {
