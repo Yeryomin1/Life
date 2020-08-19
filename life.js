@@ -27,6 +27,7 @@ window.onload = function () {
             arr[i].push(0);
     //объекты:
     let game = {};
+
     let plot = {};
 
     //поля:        
@@ -36,6 +37,8 @@ window.onload = function () {
     game.windows = {};
     game.plotData = [];
     game.stepNum = 0;
+
+    plot.maxVal = 0;
 
     //интерфейс объекта:
     game.freqUp = function () {
@@ -173,6 +176,24 @@ window.onload = function () {
 
     plot.setRanges = function(data){
         plot.xRange = plot.range(100);
+
+
+        if (plot.maxVal < data[data.length - 1]){
+        plot.maxVal = data[data.length - 1];
+        plot.maxValPos = data.length - 1;    
+        }
+        else plot.maxValPos--;
+        if (plot.maxValPos<0){
+            plot.maxVal = data[0];
+            for (let i = 1; i < data.length /*- 1*/; i++)
+                if (data[i]>plot.maxVal){
+                    plot.maxVal = data[i];
+                    plot.maxValPos = i;
+                }
+        }
+        plot.yRange = plot.range(plot.maxVal);
+        //if(!game._stop)
+        //alert(plot.maxVal);
     }
 
     plot.drawAxisX = function (stepsNumber) {
