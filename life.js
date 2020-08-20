@@ -233,7 +233,7 @@ window.onload = function () {
         context.lineTo(ORIGIN_X, CANVAS_HEIGHT - PLOT_HEIGHT);
         context.stroke();
         //score:
-        let labels = 4;
+        let labels = 5;
         let scoreStep = (PLOT_HEIGHT - ORIGIN_Y) / labels;
         let labelLength = 8;
         for (let i = 1; i < labels; i++) {
