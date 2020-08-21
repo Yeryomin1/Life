@@ -6,9 +6,7 @@ window.onload = function () {
     //размер поля:
     const CANVAS_WIDTH = 640;
     const CANVAS_HEIGHT = 480;
-   // const PLOT_HEIGHT = 100;
-    //const ORIGIN_Y = 20;
-    //const ORIGIN_X = 40;
+
 
     const CELL_SIZE = 10;
     const WORLD_WIDTH = CANVAS_WIDTH / CELL_SIZE;
@@ -28,8 +26,6 @@ window.onload = function () {
     //объекты:
     let game = {};
 
-    //let plot = {};
-
     //поля:        
     game.model = arr;//сделать "закрытым" полем
     game._stop = true;
@@ -37,8 +33,6 @@ window.onload = function () {
     game.windows = {};
     game.plotData = [];
     game.stepNum = 0;
-
-    //plot.maxVal = 20;
 
     //интерфейс объекта:
     game.freqUp = function () {
@@ -72,18 +66,8 @@ window.onload = function () {
         //перерисовка:
         drawLife(game.model);
         plot.draw(game.plotData, game.stepNum, context);
-
-        /*
-    if(game.stepNum>10){
-        alert(game.stepNum);
-        alert(game.plotData[game.stepNum]);    
-    }
-    */
-
-
         game.model = game.nextGenerationModel();
     }
-
 
 
     //функция преобразования массива на шаг вперед:        
@@ -165,15 +149,9 @@ window.onload = function () {
         game.freqDown();
     }
 
-
-
-
-
-
     //цикл игры: 
 
     let interval = setInterval(game.draw, 1000 / game._freq);
-
 
     //глобальные функции(не сделать ли методами?)
     function summArray(array) {
@@ -234,14 +212,6 @@ window.onload = function () {
             context.stroke();
         }
     }
-
-
-
-
-
-
-
-
 
     //модальное окно для управления:
     game.windows._modal = document.getElementById("modalWindow");
