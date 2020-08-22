@@ -74,7 +74,7 @@ window.onload = function () {
         game.current = performance.now();
 
         //рисование:
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         //перерисовка:
         drawLife(game.model);
