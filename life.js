@@ -164,8 +164,8 @@ window.onload = function () {
         game.windows._modal.style.display = "block";
         game.windows.speedModal.style.display = "block";
         document.getElementById("frequency").innerHTML =
-            "Current frequency: " + this._freq + " Hz" + "<br>"
-            + "Prescribed frequency: " + this.prescribedFreq + " Hz";
+            "Current frequency: " + game._freq + " Hz" + "<br>"
+            + "Prescribed frequency: " + game.prescribedFreq + " Hz";
     }
 
     addModalWindow.onclick = function () {
