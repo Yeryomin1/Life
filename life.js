@@ -36,7 +36,10 @@ window.onload = function () {
 
     //интерфейс объекта:
     game.freqUp = function () {
-        if (this._freq == 32) alert("Maximum speed reached");
+
+        if (this._freq * 2 > 1 / game.elapsed) alert("Maximum speed reached");
+
+        //if (this._freq == 32) alert("Maximum speed reached");
         else {
             this._freq *= 2;
             clearInterval(interval);
@@ -60,6 +63,10 @@ window.onload = function () {
     }
 
     game.draw = function () {
+
+        //timing:
+        game.current = performance.now();
+
         //рисование:
         context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -67,6 +74,11 @@ window.onload = function () {
         drawLife(game.model);
         plot.draw(game.plotData, game.stepNum, context);
         game.model = game.nextGenerationModel();
+
+
+
+        //timing:
+        game.elapsed = (performance.now() - game.current) / 1000;
     }
 
 
