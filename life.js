@@ -42,9 +42,11 @@ window.onload = function () {
         this._freq *= 2;
         clearInterval(interval);
         interval = setInterval(this.draw, 1000 / this._freq);
-        game.lastFreqUpTime = performance.now();
+        game.lastFreqChangeTime = performance.now();
 
-        document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
+        document.getElementById("frequency").innerHTML =
+            "Current frequency: " + this._freq + " Hz" + "<br>"
+            + "Prescribed frequency: " + this.prescribedFreq + " Hz";
     };
 
     game.freqDown = function () {
@@ -52,8 +54,11 @@ window.onload = function () {
         this._freq /= 2;
         clearInterval(interval);
         interval = setInterval(this.draw, 1000 / this._freq);
-        game.lastFreqDownTime = performance.now();
-        document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
+        game.lastFreqChangeTime = performance.now();
+
+        document.getElementById("frequency").innerHTML =
+            "Current frequency: " + this._freq + " Hz" + "<br>"
+            + "Prescribed frequency: " + this.prescribedFreq + " Hz";
     }
 
     game.setStop = function (command) {
@@ -83,14 +88,14 @@ window.onload = function () {
         game.elapsed = (performance.now() - game.current) / 1000;
         //check, full iteration time and time from the moment of frequency increase
         if (1.1 / game.fullElapsed < game._freq
-            && game.current - game.lastFreqUpTime > 2000)
+            && game.current - game.lastFreqChangeTime > 2000)
             game.freqDown();
         //compare current frequency and required one
         //check full iteration time, possibility of acceleration
 
         if (game.prescribedFreq > game._freq
             && 0.4 / game.elapsed > game._freq
-            && game.current - game.lastFreqDownTime > 2000)
+            && game.current - game.lastFreqChangeTime > 2000)
             game.freqUp();
 
     }
