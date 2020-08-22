@@ -52,6 +52,7 @@ window.onload = function () {
         this._freq /= 2;
         clearInterval(interval);
         interval = setInterval(this.draw, 1000 / this._freq);
+        game.lastFreqDownTime = performance.now();
         document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
     }
 
@@ -81,12 +82,17 @@ window.onload = function () {
         //iteration time, seconds:
         game.elapsed = (performance.now() - game.current) / 1000;
         //check, full iteration time and time from the moment of frequency increase
-        if (1.1 / game.fullElapsed < game._freq && game.current - game.lastFreqUpTime > 2000 / game._freq)
+        if (1.1 / game.fullElapsed < game._freq
+            && game.current - game.lastFreqUpTime > 2000)
             game.freqDown();
         //compare current frequency and required one
         //check full iteration time, possibility of acceleration
-        if (game.prescribedFreq > game._freq && 0.45 / game.elapsed > game._freq)
+
+        if (game.prescribedFreq > game._freq
+            && 0.4 / game.elapsed > game._freq
+            && game.current - game.lastFreqDownTime > 2000)
             game.freqUp();
+
     }
 
 
