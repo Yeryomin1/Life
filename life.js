@@ -33,29 +33,27 @@ window.onload = function () {
     game.windows = {};
     game.plotData = [];
     game.stepNum = 0;
+    game.fullElapsed = 0;
 
     //интерфейс объекта:
     game.freqUp = function () {
 
         if (this._freq * 2 > 1 / game.elapsed) alert("Maximum speed reached");
-
-        //if (this._freq == 32) alert("Maximum speed reached");
         else {
             this._freq *= 2;
             clearInterval(interval);
             interval = setInterval(this.draw, 1000 / this._freq);
+            game.lastFreqUpTime = performance.now();
         }
         document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
     };
 
     game.freqDown = function () {
-        if (this._freq == 1) alert("Minimum speed reached");
-        else {
+
             this._freq /= 2;
             clearInterval(interval);
             interval = setInterval(this.draw, 1000 / this._freq);
-        }
-        document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
+            document.getElementById("frequency").innerHTML = "frequency: " + this._freq + " Hz";//улучшить перевод
     }
 
     game.setStop = function (command) {
@@ -65,6 +63,9 @@ window.onload = function () {
     game.draw = function () {
 
         //timing:
+        if(game.stepNum){
+          game.fullElapsed = (performance.now() - game.current)/1000;
+        } 
         game.current = performance.now();
 
         //рисование:
@@ -77,8 +78,12 @@ window.onload = function () {
 
 
 
-        //timing:
+        //time auto control:
+        //iteration time, seconds:
         game.elapsed = (performance.now() - game.current) / 1000;
+        //check, full iteration time and time from the moment of frequency increase
+        if(1.1/game.fullElapsed<game._freq && game.current - game.lastFreqUpTime>2000/game._freq)
+        game.freqDown();
     }
 
 
