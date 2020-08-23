@@ -1,39 +1,41 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Life</title>
-        <link rel="stylesheet" type="text/css" href='style.css' />
-        <script src="plot.js"></script>         
-        <script src="life.js"></script>       
-        <div class="menu">
-        <button id="setStart">Start</button>   
-        <button id="setStop">Stop</button>         
-        <button id="addGlider">Add glider</button>
-        <button id="speedModalWindow">Frequency</button>
-        <button id="addModalWindow">Adding</button>                         
-        </div>
+
+<head>
+  <title>Life</title>
+  <link rel="stylesheet" type="text/css" href='style.css' />
+  <script src="globals.js"></script>
+  <script src="plot.js"></script>
+  <script src="life.js"></script>
+  <div class="menu">
+    <button id="setStart">Start</button>
+    <button id="setStop">Stop</button>
+    <button id="addGlider">Add glider</button>
+    <button id="speedModalWindow">Frequency</button>
+    <button id="addModalWindow">Adding</button>
+  </div>
 
 
 
-        <div id="modalWindow" class="modal">
-          <div id="speedWindow" class="modalContent">
-            <span class="closeModalWindow">×</span>
-            <p>Frequency control</p>
-            <p id="frequency"></p>  
-            <button id="faster">Faster</button>
-            <button id="slower">Slower</button>
-          </div>
-          <div id="addWindow" class="modalContent">
-            <span class="closeModalWindow">×</span>
-            <p>Adding control</p>       
-            <button id="add">Add</button>
-          </div>
-        </div>  
+  <div id="modalWindow" class="modal">
+    <div id="speedWindow" class="modalContent">
+      <span class="closeModalWindow">×</span>
+      <p>Frequency control</p>
+      <p id="frequency"></p>
+      <button id="faster">Faster</button>
+      <button id="slower">Slower</button>
+    </div>
+    <div id="addWindow" class="modalContent">
+      <span class="closeModalWindow">×</span>
+      <p>Adding control</p>
+      <button id="add">Add</button>
+    </div>
+  </div>
 
-       
-        
-    </head>
-    <body>
-        <canvas id = "drawingCanvas" width="640" height="480"></canvas>
-    </body>
+
+
+</head>
+
+<body>
+  <canvas id="drawingCanvas" width="640" height="480"></canvas>
+</body>

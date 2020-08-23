@@ -1,16 +1,7 @@
 window.onload = function () {
+
     var canvas = document.getElementById("drawingCanvas");
     var context = canvas.getContext("2d");
-
-    //код рисования
-    //размер поля:
-    const CANVAS_WIDTH = 640;
-    const CANVAS_HEIGHT = 480;
-
-
-    const CELL_SIZE = 10;
-    const WORLD_WIDTH = CANVAS_WIDTH / CELL_SIZE;
-    const WORLD_HEIGHT = (CANVAS_HEIGHT - PLOT_HEIGHT) / CELL_SIZE;
 
 
     //массив клеток:
@@ -130,6 +121,8 @@ window.onload = function () {
         return result;
     }
 
+
+
     game.addGlider = function (xPosition, yPosition) {//переместить определение функции к собратьям
         x = xPosition || (WORLD_WIDTH * 0.5 - 2);
         y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
@@ -139,6 +132,7 @@ window.onload = function () {
         game.model[x + 1][y + 2] = 1;
         game.model[x + 2][y + 1] = 1;
     }
+
 
     //обработка нажатий на кнопки:
     //главное меню:
