@@ -68,7 +68,7 @@ window.onload = function () {
         context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         //перерисовка:
-        drawLife(context, game.model);
+        draw.render(context, game.model);
         plot.draw(game.plotData, game.stepNum, context);
         game.model = game.nextGenerationModel();
 
