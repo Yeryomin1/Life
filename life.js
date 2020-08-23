@@ -41,7 +41,7 @@ window.onload = function () {
 
         this._freq *= 2;
         clearInterval(interval);
-        interval = setInterval(this.draw, 1000 / this._freq);
+        interval = setInterval(this.run, 1000 / this._freq);
         game.lastFreqChangeTime = performance.now();
 
         document.getElementById("frequency").innerHTML =
@@ -53,7 +53,7 @@ window.onload = function () {
 
         this._freq /= 2;
         clearInterval(interval);
-        interval = setInterval(this.draw, 1000 / this._freq);
+        interval = setInterval(this.run, 1000 / this._freq);
         game.lastFreqChangeTime = performance.now();
 
         document.getElementById("frequency").innerHTML =
@@ -65,7 +65,7 @@ window.onload = function () {
         game._stop = command;
     }
 
-    game.draw = function () {
+    game.run = function () {
 
         //timing:
         if (game.stepNum) {
@@ -190,7 +190,7 @@ window.onload = function () {
 
     //цикл игры: 
 
-    let interval = setInterval(game.draw, 1000 / game._freq);
+    let interval = setInterval(game.run, 1000 / game._freq);
 
     //глобальные функции(не сделать ли методами?)
     function summArray(array) {
