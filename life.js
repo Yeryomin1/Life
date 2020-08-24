@@ -122,18 +122,6 @@ window.onload = function () {
     }
 
 
-
-    game.addGlider = function (xPosition, yPosition) {//переместить определение функции к собратьям
-        x = xPosition || (WORLD_WIDTH * 0.5 - 2);
-        y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
-        game.model[x][y] = 1;
-        game.model[x][y + 1] = 1;
-        game.model[x][y + 2] = 1;
-        game.model[x + 1][y + 2] = 1;
-        game.model[x + 2][y + 1] = 1;
-    }
-
-
     //обработка нажатий на кнопки:
     //главное меню:
     setStop.onclick = function () {
@@ -145,13 +133,13 @@ window.onload = function () {
     }
 
     addGlider.onclick = function () {
-        game.addGlider();
+        patterns.glider(game.model);
     }
 
     add.onclick = function () {
         let userX = Number(prompt("Enter the abscissa of the upper-left corner of the glider", String(WORLD_WIDTH * 0.5 - 2))) - 1;
         let userY = Number(prompt("Enter the ordinate of the upper-left corner of the glider", String(WORLD_HEIGHT * 0.5 - 2)));
-        game.addGlider(userX, WORLD_HEIGHT - userY);
+        patterns.glider(game.model, userX, WORLD_HEIGHT - userY);
     }
 
     speedModalWindow.onclick = function () {

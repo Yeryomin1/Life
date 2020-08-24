@@ -1,7 +1,3 @@
-
-//const ORIGIN_Y = 20;
-//const ORIGIN_X = 40;
-
 let plot = {};
 plot.maxVal = 20;
 plot.originX = 40;
