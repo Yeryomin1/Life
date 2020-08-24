@@ -136,7 +136,7 @@ window.onload = function () {
         patterns.clear(game.model);
     }
 
-    add.onclick = function () {
+    addGlider.onclick = function () {
         let userX = Number(prompt("Enter the abscissa of the upper-left corner of the glider", String(WORLD_WIDTH * 0.5 - 2))) - 1;
         let userY = Number(prompt("Enter the ordinate of the upper-left corner of the glider", String(WORLD_HEIGHT * 0.5 - 2)));
         patterns.glider(game.model, userX, WORLD_HEIGHT - userY);
