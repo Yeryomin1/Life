@@ -132,8 +132,8 @@ window.onload = function () {
         game.setStop(false);
     }
 
-    addGlider.onclick = function () {
-        patterns.glider(game.model);
+    clear.onclick = function () {
+        patterns.clear(game.model);
     }
 
     add.onclick = function () {
