@@ -142,6 +142,16 @@ window.onload = function () {
         patterns.glider(game.model, userX, WORLD_HEIGHT - userY);
     }
 
+    addSmallExploder.onclick = function () {
+        let userX = Number(prompt("Enter the abscissa of the center of the Exploder", String(WORLD_WIDTH * 0.5 - 2))) - 1;
+        let userY = Number(prompt("Enter the ordinate of the center of the Exploder", String(WORLD_HEIGHT * 0.5 - 2)));
+        patterns.smallExploder(game.model, userX, WORLD_HEIGHT - userY);
+    }
+
+
+
+
+
     speedModalWindow.onclick = function () {
         game.windows._modal.style.display = "block";
         game.windows.speedModal.style.display = "block";
