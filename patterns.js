@@ -88,3 +88,12 @@ patterns.clear = function (array) {
         for (j = 0; j < WORLD_HEIGHT; j++)
             array[i][j] = 0;
 }
+
+patterns.random = function (array) {
+    this.clear(array);
+    for (i = 0; i < WORLD_WIDTH; i++)
+        for (j = 0; j < WORLD_HEIGHT; j++) {
+            if (Math.random() < 0.3) array[i][j] = 1;
+        }
+
+}
