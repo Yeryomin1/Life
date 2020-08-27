@@ -169,6 +169,11 @@ window.onload = function () {
         let userY = Number(prompt("Enter the ordinate of the center of the gun", String(WORLD_HEIGHT * 0.5 - 2)));
         patterns.gliderGun(game.model, userX, WORLD_HEIGHT - userY);
     }
+    addCell.onclick = function () {
+        let userX = Number(prompt("Enter the abscissa of the cell", String(WORLD_WIDTH * 0.5 - 2))) - 1;
+        let userY = Number(prompt("Enter the ordinate of the cell", String(WORLD_HEIGHT * 0.5 - 2)));
+        patterns.cell(game.model, userX, WORLD_HEIGHT - userY);
+    }
     //кнопки окон:
     faster.onclick = function () {
         if (this._freq * 2 > 1 / game.elapsed) alert("Maximum speed reached");

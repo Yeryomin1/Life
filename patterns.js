@@ -82,7 +82,14 @@ patterns.gliderGun = function (array, xPosition, yPosition) {
     array[x + 17][y + 8] = 1;
 }
 
+patterns.cell = function (array, xPosition, yPosition) {
+    x = xPosition || (WORLD_WIDTH * 0.5 - 2);
+    y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
+    array[x][y] = 1;
+}
 
+
+//not patterns:
 patterns.clear = function (array) {
     for (i = 0; i < WORLD_WIDTH; i++)
         for (j = 0; j < WORLD_HEIGHT; j++)
