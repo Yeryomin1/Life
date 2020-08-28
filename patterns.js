@@ -19,6 +19,14 @@ The value of ${param} must be between ${minVal} and ${maxVal}.`);
 
 
 patterns.glider = function (array, xPosition, yPosition) {
+    let size = {};
+    size.left = 0;
+    size.right = 2;
+    size.top = 0;
+    size.bottom = 3;
+
+    if (!patterns.checkPosition(size, xPosition, yPosition)) return;
+
     let x = xPosition;
     let y = yPosition;
     array[x][y] = 1;
