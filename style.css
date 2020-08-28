@@ -12,10 +12,9 @@ font-family:verdana;
 
 .modal button
 {
-display: inline;
-font-size:0.8em;
-font-family:verdana;
 margin-top: 5px;     
+font-size:0.8em;
+font-family:verdana;    
 }
 
 #setStart
