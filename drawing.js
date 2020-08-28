@@ -41,7 +41,7 @@ draw.drawGrid = function (cellSize, thickness, gridColor) {
         this.ctx.lineTo(cellSize * count, cellSize * WORLD_HEIGHT);
         this.ctx.stroke();
     }
-    for (count = 0; count < WORLD_HEIGHT; count++) {
+    for (count = 0; count <= WORLD_HEIGHT; count++) {
         this.ctx.moveTo(0, cellSize * count);
         this.ctx.lineTo(cellSize * WORLD_WIDTH, cellSize * count);
         this.ctx.stroke();
