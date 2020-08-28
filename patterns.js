@@ -49,14 +49,14 @@ patterns.smallExploder = function (array, xPosition, yPosition) {
 }
 
 patterns.gliderGun = function (array, xPosition, yPosition) {
-    if (xPosition < 19 || xPosition >= WORLD_WIDTH - 18) {
-        patterns.errorMessage("X", 20, WORLD_WIDTH - 18);
-        return;
-    }
-    if (yPosition < 1 || yPosition > WORLD_HEIGHT - 12) {
-        patterns.errorMessage("Y", 12, WORLD_HEIGHT - 1);
-        return;
-    }
+    let size = {};
+    size.left = 19;
+    size.right = 18;
+    size.top = 1;
+    size.bottom = 12;
+
+    if (!patterns.checkPosition(size, xPosition, yPosition)) return;
+
     let x = xPosition;
     let y = yPosition;
 
