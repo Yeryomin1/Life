@@ -116,14 +116,14 @@ patterns.gliderGun = function (array, xPosition, yPosition) {
 }
 
 patterns.cell = function (array, xPosition, yPosition) {
-    if (xPosition < 0 || xPosition >= WORLD_WIDTH) {
-        patterns.errorMessage("X", 1, WORLD_WIDTH);
-        return;
-    }
-    if (yPosition < 0 || yPosition >= WORLD_HEIGHT) {
-        patterns.errorMessage("Y", 1, WORLD_HEIGHT);
-        return;
-    }
+    let size = {};
+    size.left = 0;
+    size.right = 0;
+    size.top = 0;
+    size.bottom = 1;
+
+    if (!patterns.checkPosition(size, xPosition, yPosition)) return;
+
     array[xPosition][yPosition] = 1;
 }
 
