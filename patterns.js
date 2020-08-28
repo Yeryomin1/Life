@@ -2,8 +2,8 @@ let patterns = {};
 
 
 patterns.glider = function (array, xPosition, yPosition) {
-    x = xPosition || (WORLD_WIDTH * 0.5 - 2);
-    y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
+    let x = xPosition;
+    let y = yPosition;
     array[x][y] = 1;
     array[x][y + 1] = 1;
     array[x][y + 2] = 1;
@@ -12,8 +12,8 @@ patterns.glider = function (array, xPosition, yPosition) {
 }
 
 patterns.smallExploder = function (array, xPosition, yPosition) {
-    x = xPosition || (WORLD_WIDTH * 0.5 - 2);
-    y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
+    let x = xPosition;
+    let y = yPosition;
     array[x][y + 1] = 1;
     array[x - 1][y + 1] = 1;
     array[x][y + 2] = 1;
@@ -24,8 +24,8 @@ patterns.smallExploder = function (array, xPosition, yPosition) {
 }
 
 patterns.gliderGun = function (array, xPosition, yPosition) {
-    x = xPosition || (WORLD_WIDTH * 0.5 - 2);
-    y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
+    let x = xPosition;
+    let y = yPosition;
 
     //square 1:
     array[x - 18][y + 6] = 1;
@@ -83,9 +83,7 @@ patterns.gliderGun = function (array, xPosition, yPosition) {
 }
 
 patterns.cell = function (array, xPosition, yPosition) {
-    x = xPosition || (WORLD_WIDTH * 0.5 - 2);
-    y = yPosition || (WORLD_HEIGHT * 0.5 - 2);
-    array[x][y] = 1;
+    array[xPosition][yPosition] = 1;
 }
 
 
