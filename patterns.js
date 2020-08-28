@@ -17,6 +17,19 @@ patterns.glider = function (array, xPosition, yPosition) {
 }
 
 patterns.smallExploder = function (array, xPosition, yPosition) {
+    let left = 7;
+    let right = 7;
+    let top = 7;
+    let bottom = 9;
+
+    if (xPosition < left || xPosition >= WORLD_WIDTH - right) {
+        patterns.errorMessage("X", left + 1, WORLD_WIDTH - right);
+        return;
+    }
+    if (yPosition < top || yPosition > WORLD_HEIGHT - bottom) {
+        patterns.errorMessage("Y", bottom, WORLD_HEIGHT - top);
+        return;
+    }
     let x = xPosition;
     let y = yPosition;
     array[x][y + 1] = 1;
