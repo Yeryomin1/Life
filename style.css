@@ -14,7 +14,8 @@ font-family:verdana;
 {
 display: inline;
 font-size:0.8em;
-font-family:verdana;     
+font-family:verdana;
+margin-top: 5px;     
 }
 
 #setStart
