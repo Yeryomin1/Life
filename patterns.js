@@ -1,5 +1,10 @@
 let patterns = {};
 
+patterns.errorMessage = function (param, minVal, maxVal) {
+    alert(`The figure breaks the boundaries of the field.
+The value of ${param} must be between ${minVal} and ${maxVal}.`);
+}
+
 
 patterns.glider = function (array, xPosition, yPosition) {
     let x = xPosition;
@@ -83,6 +88,14 @@ patterns.gliderGun = function (array, xPosition, yPosition) {
 }
 
 patterns.cell = function (array, xPosition, yPosition) {
+    if (xPosition < 0 || xPosition > WORLD_WIDTH) {
+        patterns.errorMessage("X", 1, WORLD_WIDTH);
+        return;
+    }
+    if (yPosition < 0 || yPosition >= WORLD_HEIGHT) {
+        patterns.errorMessage("Y", 1, WORLD_HEIGHT);
+        return;
+    }
     array[xPosition][yPosition] = 1;
 }
 
