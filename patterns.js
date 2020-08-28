@@ -29,6 +29,14 @@ patterns.smallExploder = function (array, xPosition, yPosition) {
 }
 
 patterns.gliderGun = function (array, xPosition, yPosition) {
+    if (xPosition < 19 || xPosition >= WORLD_WIDTH - 18) {
+        patterns.errorMessage("X", 20, WORLD_WIDTH - 18);
+        return;
+    }
+    if (yPosition < 1 || yPosition > WORLD_HEIGHT - 12) {
+        patterns.errorMessage("Y", 12, WORLD_HEIGHT - 1);
+        return;
+    }
     let x = xPosition;
     let y = yPosition;
 
@@ -88,7 +96,7 @@ patterns.gliderGun = function (array, xPosition, yPosition) {
 }
 
 patterns.cell = function (array, xPosition, yPosition) {
-    if (xPosition < 0 || xPosition > WORLD_WIDTH) {
+    if (xPosition < 0 || xPosition >= WORLD_WIDTH) {
         patterns.errorMessage("X", 1, WORLD_WIDTH);
         return;
     }
