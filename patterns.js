@@ -1,5 +1,17 @@
 let patterns = {};
 
+patterns.checkPosition = function (border, inputX, inputY) {
+    if (inputX < border.left || inputX >= WORLD_WIDTH - border.right) {
+        patterns.errorMessage("X", border.left + 1, WORLD_WIDTH - border.right);
+        return false;
+    }
+    if (inputY < border.top || inputY > WORLD_HEIGHT - border.bottom) {
+        patterns.errorMessage("Y", border.bottom, WORLD_HEIGHT - border.top);
+        return false;
+    }
+    return true;
+}
+
 patterns.errorMessage = function (param, minVal, maxVal) {
     alert(`The figure breaks the boundaries of the field.
 The value of ${param} must be between ${minVal} and ${maxVal}.`);
@@ -17,19 +29,14 @@ patterns.glider = function (array, xPosition, yPosition) {
 }
 
 patterns.smallExploder = function (array, xPosition, yPosition) {
-    let left = 7;
-    let right = 7;
-    let top = 7;
-    let bottom = 9;
+    let size = {};
+    size.left = 7;
+    size.right = 7;
+    size.top = 7;
+    size.bottom = 9;
 
-    if (xPosition < left || xPosition >= WORLD_WIDTH - right) {
-        patterns.errorMessage("X", left + 1, WORLD_WIDTH - right);
-        return;
-    }
-    if (yPosition < top || yPosition > WORLD_HEIGHT - bottom) {
-        patterns.errorMessage("Y", bottom, WORLD_HEIGHT - top);
-        return;
-    }
+    if (!patterns.checkPosition(size, xPosition, yPosition)) return;
+
     let x = xPosition;
     let y = yPosition;
     array[x][y + 1] = 1;
