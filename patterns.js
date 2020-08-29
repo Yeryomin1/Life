@@ -1,11 +1,11 @@
 let patterns = {};
 
 patterns.checkPosition = function (border, inputX, inputY) {
-    if (inputX < border.left || inputX >= WORLD_WIDTH - border.right) {
+    if (isNaN(inputX) || inputX < border.left || inputX >= WORLD_WIDTH - border.right) {
         patterns.errorMessage("X", border.left + 1, WORLD_WIDTH - border.right);
         return false;
     }
-    if (inputY < border.top || inputY > WORLD_HEIGHT - border.bottom) {
+    if (isNaN(inputY) || inputY < border.top || inputY > WORLD_HEIGHT - border.bottom) {
         patterns.errorMessage("Y", border.bottom, WORLD_HEIGHT - border.top);
         return false;
     }
@@ -13,8 +13,8 @@ patterns.checkPosition = function (border, inputX, inputY) {
 }
 
 patterns.errorMessage = function (param, minVal, maxVal) {
-    alert(`The figure breaks the boundaries of the field.
-The value of ${param} must be between ${minVal} and ${maxVal}.`);
+    alert(`Invalid value entered.
+The value of ${param} must be a number between ${minVal} and ${maxVal}.`);
 }
 
 
