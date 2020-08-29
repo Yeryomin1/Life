@@ -150,7 +150,11 @@ window.onload = function () {
     }
 
     randomize.onclick = function () {
-        let intensity = Number(prompt("Enter the intensity (%) of randomization", String(WORLD_WIDTH * 0.5 - 2))) - 1;
+        let intensity = Number(prompt("Enter the intensity (%) of randomization", String(WORLD_WIDTH * 0.5 - 2)));     
+        while (isNaN(intensity) || intensity <= 0 || intensity > 100) {
+            alert("Enter a number from 1 to 100");
+            intensity = Number(prompt("Enter the intensity (%) of randomization", String(WORLD_WIDTH * 0.5 - 2)));
+        }
         patterns.random(game.model, intensity);
     }
 
