@@ -143,11 +143,12 @@ patterns.clear = function (array) {
             array[i][j] = 0;
 }
 
-patterns.random = function (array) {
+patterns.random = function (array, percentage) {
+    let density = percentage / 100;
     this.clear(array);
     for (i = 0; i < WORLD_WIDTH; i++)
         for (j = 0; j < WORLD_HEIGHT; j++) {
-            if (Math.random() < 0.3) array[i][j] = 1;
+            if (Math.random() < density) array[i][j] = 1;
         }
 
 }

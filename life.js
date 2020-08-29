@@ -150,7 +150,8 @@ window.onload = function () {
     }
 
     randomize.onclick = function () {
-        patterns.random(game.model);
+        let intensity = Number(prompt("Enter the intensity (%) of randomization", String(WORLD_WIDTH * 0.5 - 2))) - 1;
+        patterns.random(game.model, intensity);
     }
 
     //patterns adding:
