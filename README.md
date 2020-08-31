@@ -9,3 +9,4 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
   * Grosper glider gun
   * individual cell
 * The population graph (shows the population according to the last 100 generations)
+![](screen.png "")
