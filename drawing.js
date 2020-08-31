@@ -5,14 +5,14 @@ let draw = {};
 draw.render = function (context, array) {
     this.ctx = context;
     this.drawArray(array);
-    this.drawGrid(10, 1, "rgb(100, 100, 100)");
+    this.drawGrid(CELL_SIZE, 1, "rgb(100, 100, 100)");
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
     for (i = 0; i < WORLD_WIDTH; i++)
         for (j = 0; j < WORLD_HEIGHT; j++) {
             if (array[i][j] == 1) {
-                draw.drawCell(i, j, 10, "rgb(255, 0, 0)");
+                draw.drawCell(i, j, CELL_SIZE, "rgb(255, 0, 0)");
             }
         }
 }
