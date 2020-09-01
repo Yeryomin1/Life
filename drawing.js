@@ -1,18 +1,52 @@
 
 let draw = {};
 
+//color theme:
+/*
+draw.init = function(){
+draw.theme = {gridColor: "red", cellColor: "blue"};
+alert("ggg");
+alert(this.theme.gridColor);    
+}
+*/
+draw.init = function () {
+    draw.themes = [{ gridColor: "#fdd816", cellColor: "#212a31" },
+    { gridColor: "#26295a", cellColor: "#e4524f" },
+    { gridColor: "#f8af42", cellColor: "#27509e" },
+    { gridColor: "#ffffff", cellColor: "#29b297" },
+    ];
+    draw.currentThemeNum = 0;
+}
+
+/*
+
+//(["#fdd816", "#212a31", "#ffffff"]);
+(["#26295a", "#e4524f", "#f3e737"]);
+(["#f8af42", "#27509e", "#ffffff"]);
+(["#29b297", "#ffffff", "#ffffff"]);
+    
+}
+*/
+draw.nextTheme = function () {
+    if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
+    else this.currentThemeNum = 0;
+}
+
 //функция рисования всего:
 draw.render = function (context, array) {
+
+    //TODO: background color from themes setting here
+
     this.ctx = context;
     this.drawArray(array);
-    this.drawGrid(CELL_SIZE, 1, "rgb(100, 100, 100)");
+    this.drawGrid(CELL_SIZE, 1, this.themes[this.currentThemeNum].gridColor);
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
     for (i = 0; i < WORLD_WIDTH; i++)
         for (j = 0; j < WORLD_HEIGHT; j++) {
             if (array[i][j] == 1) {
-                draw.drawCell(i, j, CELL_SIZE, "rgb(255, 0, 0)");
+                draw.drawCell(i, j, CELL_SIZE, this.themes[this.currentThemeNum].cellColor);
             }
         }
 }

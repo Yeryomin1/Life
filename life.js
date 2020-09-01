@@ -3,6 +3,12 @@ window.onload = function () {
     var canvas = document.getElementById("drawingCanvas");
     var context = canvas.getContext("2d");
 
+    draw.init();
+
+
+
+
+
 
     //массив клеток:
     let arr = [];
@@ -149,8 +155,14 @@ window.onload = function () {
         game.windows.addModal.style.display = "block";
     }
 
+    colorModalWindow.onclick = function () {
+        game.windows._modal.style.display = "block";
+        game.windows.colorModal.style.display = "block";
+    }
+
+
     randomize.onclick = function () {
-        let intensity = Number(prompt("Enter the intensity (%) of randomization", 40));     
+        let intensity = Number(prompt("Enter the intensity (%) of randomization", 40));
         while (isNaN(intensity) || intensity <= 0 || intensity > 100) {
             alert("Enter a number from 1 to 100");
             intensity = Number(prompt("Enter the intensity (%) of randomization", 40));
@@ -179,7 +191,7 @@ window.onload = function () {
         let userY = Number(prompt("Enter the ordinate of the cell", String(WORLD_HEIGHT * 0.5 - 2)));
         patterns.cell(game.model, userX, WORLD_HEIGHT - userY);
     }
-    //кнопки окон:
+    //frequency control:
     faster.onclick = function () {
         if (this._freq * 2 > 1 / game.elapsed) alert("Maximum speed reached");
         else {
@@ -193,6 +205,16 @@ window.onload = function () {
         game.prescribedFreq = game._freq / 2;
         game.freqDown();
     }
+
+    //color control:
+
+    nextTheme.onclick = function () {
+        draw.nextTheme();
+    }
+
+
+
+
 
     //цикл игры: 
 
@@ -220,25 +242,46 @@ window.onload = function () {
     //дочерние окна управления:
     game.windows.speedModal = document.getElementById("speedWindow");
     game.windows.addModal = document.getElementById("addWindow");
+    game.windows.colorModal = document.getElementById("colorWindow");
+
+
+
     //"Х" закрытия окон:
-    game.windows.speedSpan = document.getElementsByClassName("closeModalWindow")[0];
-    game.windows.addSpan = document.getElementsByClassName("closeModalWindow")[1];
+    let close = document.getElementsByClassName("closeModalWindow");
+    game.windows.speedSpan = close[0];
+    game.windows.addSpan = close[1];
+    game.windows.colorSpan = close[2];
+
+
+
 
     //окно скорости:   
     game.windows.speedSpan.onclick = function () {
         game.windows.speedModal.style.display = "none";
-        if (game.windows.speedModal.style.display == game.windows.addModal.style.display) {
+        if (game.windows.addModal.style.display != "block" &&
+            game.windows.colorModal.style.display != "block") {
             game.windows._modal.style.display = "none";
         }
     }
     //окно добавления:
     game.windows.addSpan.onclick = function () {
         game.windows.addModal.style.display = "none";
-        if (game.windows.speedModal.style.display == game.windows.addModal.style.display) {
+        if (game.windows.speedModal.style.display != "block" &&
+            game.windows.colorModal.style.display != "block") {
             game.windows._modal.style.display = "none";
         }
 
     }
+    //окно цветов:
+    game.windows.colorSpan.onclick = function () {
+        game.windows.colorModal.style.display = "none";
+        if (game.windows.addModal.style.display != "block" &&
+            game.windows.speedModal.style.display != "block") {
+            game.windows._modal.style.display = "none";
+        }
+
+    }
+
     //клик по фону, закрытие окон:   
     window.onclick = function (event) {
         if (event.target == game.windows._modal) game.windows._modal.style.display = "none";
