@@ -70,7 +70,7 @@ window.onload = function () {
 
         //перерисовка:
         draw.render(game.model);
-        plot.draw(game.plotData, game.stepNum, context);
+        plot.draw(game.plotData, game.stepNum, context, draw.gridColor(), draw.cellColor());
         game.model = game.nextGenerationModel();
 
 

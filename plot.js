@@ -4,12 +4,12 @@ plot.originX = 40;
 plot.originY = 20;
 
 
-plot.draw = function (data, steps, context) {
+plot.draw = function (data, steps, context, axisColor, dataColor) {
     plot.ctx = context;
     plot.setRanges(data);
-    plot.drawAxisX(steps);
-    plot.drawAxisY();
-    plot.drawData(data, steps);
+    plot.drawAxisX(steps, axisColor);
+    plot.drawAxisY(axisColor);
+    plot.drawData(data, steps, dataColor);
 }
 
 plot.setRanges = function (data) {
@@ -32,10 +32,10 @@ plot.setRanges = function (data) {
     plot.yRange = plot.range(plot.maxVal);
 }
 
-plot.drawAxisX = function (stepsNumber) {
+plot.drawAxisX = function (stepsNumber, color) {
     plot.ctx.beginPath();
     plot.ctx.lineWidth = 2;
-    plot.ctx.strokeStyle = "black";
+    plot.ctx.strokeStyle = color;
     plot.ctx.lineCap = "butt";
     //axis line:
     plot.ctx.moveTo(0, CANVAS_HEIGHT - plot.originY);
@@ -52,7 +52,7 @@ plot.drawAxisX = function (stepsNumber) {
     //text labels:
     let displacement = 0;
     if (stepsNumber > 90) displacement = stepsNumber - 90;
-    plot.ctx.fillStyle = "black";
+    plot.ctx.fillStyle = color;
     plot.ctx.font = "10pt Arial";
     for (let i = 1; i < 6; i++) {
         plot.ctx.fillText(displacement + i * plot.xRange / 5, plot.originX + i * scoreStep - 5, CANVAS_HEIGHT - plot.originY + labelLength / 2 + 12);
@@ -61,10 +61,10 @@ plot.drawAxisX = function (stepsNumber) {
 
 }
 
-plot.drawAxisY = function () {
+plot.drawAxisY = function (color) {
     plot.ctx.beginPath();
     plot.ctx.lineWidth = 2;
-    plot.ctx.strokeStyle = "black";
+    plot.ctx.strokeStyle = color;
     plot.ctx.lineCap = "butt";
     //axis line:
     plot.ctx.moveTo(plot.originX, CANVAS_HEIGHT);
@@ -80,7 +80,7 @@ plot.drawAxisY = function () {
         plot.ctx.stroke();
     }
     //text labels:
-    plot.ctx.fillStyle = "black";
+    plot.ctx.fillStyle = color;
     plot.ctx.font = "10pt Arial";
     for (let i = 1; i < labels; i++) {
         plot.ctx.fillText(i * plot.yRange / labels, 10, CANVAS_HEIGHT - plot.originY - i * scoreStep + 5);
@@ -88,11 +88,11 @@ plot.drawAxisY = function () {
 
 }
 
-plot.drawData = function (dataArr, stepsNum) {
+plot.drawData = function (dataArr, stepsNum, color) {
     let columnWidth = (CANVAS_WIDTH - plot.originX) / 120;
     plot.ctx.beginPath();
     plot.ctx.lineWidth = 5;
-    plot.ctx.strokeStyle = "red";
+    plot.ctx.strokeStyle = color;
     plot.ctx.lineCap = "butt";
     let zoom = (PLOT_HEIGHT - plot.originY) / plot.yRange;
 

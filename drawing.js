@@ -13,8 +13,8 @@ draw.init = function (canvas) {
     draw.canvas = canvas;
     draw.ctx = canvas.getContext("2d");
     draw.themes =
-        [{ gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
-        { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
+        [{ gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
+        { gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
         { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
         { gridColor: "#ffffff", cellColor: "#29b297", background: "#ffffff" },
         { gridColor: "#fbbe18", cellColor: "#e94a54", background: "#20252a" },
@@ -22,6 +22,14 @@ draw.init = function (canvas) {
         { gridColor: "#2d3439", cellColor: "#f4cb67", background: "#c6ccd2" },
         ];
     draw.currentThemeNum = 0;
+}
+
+draw.gridColor = function () {
+    return this.themes[this.currentThemeNum].gridColor;
+}
+
+draw.cellColor = function () {
+    return this.themes[this.currentThemeNum].cellColor;
 }
 
 draw.nextTheme = function () {
