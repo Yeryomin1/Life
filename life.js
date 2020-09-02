@@ -3,12 +3,7 @@ window.onload = function () {
     var canvas = document.getElementById("drawingCanvas");
     var context = canvas.getContext("2d");
 
-    draw.init();
-
-
-
-
-
+    draw.init(canvas);
 
     //массив клеток:
     let arr = [];
@@ -74,7 +69,7 @@ window.onload = function () {
         context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
         //перерисовка:
-        draw.render(context, game.model);
+        draw.render(game.model);
         plot.draw(game.plotData, game.stepNum, context);
         game.model = game.nextGenerationModel();
 

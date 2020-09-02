@@ -9,35 +9,25 @@ alert("ggg");
 alert(this.theme.gridColor);    
 }
 */
-draw.init = function () {
-    draw.themes = [{ gridColor: "#fdd816", cellColor: "#212a31" },
-    { gridColor: "#26295a", cellColor: "#e4524f" },
-    { gridColor: "#f8af42", cellColor: "#27509e" },
-    { gridColor: "#ffffff", cellColor: "#29b297" },
+draw.init = function (canvas) {
+    draw.canvas = canvas;
+    draw.ctx = canvas.getContext("2d");
+    draw.themes = [{ gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
+    { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
+    { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
+    { gridColor: "#ffffff", cellColor: "#29b297", background: "#ffffff" },
     ];
     draw.currentThemeNum = 0;
 }
 
-/*
-
-//(["#fdd816", "#212a31", "#ffffff"]);
-(["#26295a", "#e4524f", "#f3e737"]);
-(["#f8af42", "#27509e", "#ffffff"]);
-(["#29b297", "#ffffff", "#ffffff"]);
-    
-}
-*/
 draw.nextTheme = function () {
     if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
     else this.currentThemeNum = 0;
 }
 
 //функция рисования всего:
-draw.render = function (context, array) {
-
-    //TODO: background color from themes setting here
-
-    this.ctx = context;
+draw.render = function (array) {
+    draw.canvas.style.background = this.themes[this.currentThemeNum].background;
     this.drawArray(array);
     this.drawGrid(CELL_SIZE, 1, this.themes[this.currentThemeNum].gridColor);
 }
