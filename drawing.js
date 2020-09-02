@@ -32,23 +32,33 @@ draw.cellColor = function () {
     return this.themes[this.currentThemeNum].cellColor;
 }
 
+draw.backgroundColor = function () {
+    return this.themes[this.currentThemeNum].background;
+}
+
+
 draw.nextTheme = function () {
     if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
     else this.currentThemeNum = 0;
 }
 
+draw.previousTheme = function () {
+    if (this.currentThemeNum > 0) this.currentThemeNum--;
+    else this.currentThemeNum = this.themes.length - 1;
+}
+
 //функция рисования всего:
 draw.render = function (array) {
-    draw.canvas.style.background = this.themes[this.currentThemeNum].background;
+    draw.canvas.style.background = this.backgroundColor();
     this.drawArray(array);
-    this.drawGrid(CELL_SIZE, 1, this.themes[this.currentThemeNum].gridColor);
+    this.drawGrid(CELL_SIZE, 1, this.gridColor());
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
     for (i = 0; i < WORLD_WIDTH; i++)
         for (j = 0; j < WORLD_HEIGHT; j++) {
             if (array[i][j] == 1) {
-                draw.drawCell(i, j, CELL_SIZE, this.themes[this.currentThemeNum].cellColor);
+                draw.drawCell(i, j, CELL_SIZE, this.cellColor());
             }
         }
 }
