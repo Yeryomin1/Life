@@ -12,11 +12,15 @@ alert(this.theme.gridColor);
 draw.init = function (canvas) {
     draw.canvas = canvas;
     draw.ctx = canvas.getContext("2d");
-    draw.themes = [{ gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
-    { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
-    { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
-    { gridColor: "#ffffff", cellColor: "#29b297", background: "#ffffff" },
-    ];
+    draw.themes =
+        [{ gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
+        { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
+        { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
+        { gridColor: "#ffffff", cellColor: "#29b297", background: "#ffffff" },
+        { gridColor: "#fbbe18", cellColor: "#e94a54", background: "#20252a" },
+        { gridColor: "#2c73b8", cellColor: "#e41d23", background: "#202230" },
+        { gridColor: "#2d3439", cellColor: "#f4cb67", background: "#c6ccd2" },
+        ];
     draw.currentThemeNum = 0;
 }
 
