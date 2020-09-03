@@ -2,18 +2,11 @@
 let draw = {};
 
 //color theme:
-/*
-draw.init = function(){
-draw.theme = {gridColor: "red", cellColor: "blue"};
-alert("ggg");
-alert(this.theme.gridColor);    
-}
-*/
 draw.init = function (canvas) {
     draw.canvas = canvas;
     draw.ctx = canvas.getContext("2d");
     draw.themes =
-        [{ gridColor: "#000000", cellColor: "#404040", background: "#ffffff" },
+        [{ gridColor: "#000000", cellColor: "#505050", background: "#ffffff" },
         { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
         { gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
         { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
