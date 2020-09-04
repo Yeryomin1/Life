@@ -6,8 +6,8 @@ draw.init = function (canvas) {
     draw.canvas = canvas;
     draw.ctx = canvas.getContext("2d");
     draw.staticColorTheme = true;
-    draw.cellRGB = [0, 0, 0];
-    draw.colorStepVal = 12;
+    draw.cellRGB = [100, 100, 100];
+    draw.colorStepVal = 20;
     //static color themes:    
     draw.themes =
         [{ gridColor: "#000000", cellColor: "#505050", background: "#ffffff" },
@@ -38,52 +38,43 @@ function rgbToHex(r, g, b) {
 }
 //hex->RGB:
 function hexToRgb(hex, resArrRGB) {
-    var bigint = parseInt(hex, 16);
-    resArrRGB[0] = (bigint >> 16) & 255;
-    resArrRGB[1] = (bigint >> 8) & 255;
-    resArrRGB[2] = bigint & 255;
+    let bigint = parseInt(hex, 16);
+    resArrRGB[2] = bigint % 256;
+    bigint -= resArrRGB[2];
+    bigint /= 256;
+    resArrRGB[1] = bigint % 256;
+    bigint -= resArrRGB[1];
+    resArrRGB[0] = bigint / 256;
 }
+
 
 //dynamicTheme call:
 draw.setDynamicTheme = function () {
     draw.staticColorTheme = !(draw.staticColorTheme);
     if (!(draw.staticColorTheme)) {
         draw.dynamicTheme = draw.themes[draw.currentThemeNum];
-        hexToRgb(draw.dynamicTheme.cellColor, draw.cellRGB);        
+        hexToRgb(draw.dynamicTheme.cellColor.slice(1), draw.cellRGB);
     }
 }
 //color dynamics:
 draw.colorStep = function () {
-    draw.cellRGB[0] += draw.colorStepVal;
-    if (draw.cellRGB[0] > 255) {
-        draw.cellRGB[0] = 255;
-        draw.colorStepVal = -12;
-    }
-    if (draw.cellRGB[0] < 0) {
-        draw.cellRGB[0] = 0;
-        draw.colorStepVal = 12;
-    }
+    let done = false;
+    while (!done) {
+        let deltaR = Math.round((Math.random() - 0.5) * draw.colorStepVal);
+        let deltaG = Math.round((Math.random() - 0.5) * draw.colorStepVal);
+        let deltaB = - (deltaR + deltaG);
 
-    draw.cellRGB[1] -= draw.colorStepVal/3;
-    if (draw.cellRGB[1] > 255) {
-        draw.cellRGB[1] = 255;
-        draw.colorStepVal = -12;
-    }
-    if (draw.cellRGB[1] < 0) {
-        draw.cellRGB[1] = 0;
-        draw.colorStepVal = 12;
-    }
+        let enoughSpaceR = (draw.cellRGB[0] + deltaR <= 255 && draw.cellRGB[0] + deltaR >= 0);
+        let enoughSpaceG = (draw.cellRGB[1] + deltaG <= 255 && draw.cellRGB[1] + deltaG >= 0);
+        let enoughSpaceB = (draw.cellRGB[2] + deltaB <= 255 && draw.cellRGB[2] + deltaB >= 0);
 
-    draw.cellRGB[2] -= draw.colorStepVal*2/3;
-    if (draw.cellRGB[2] > 255) {
-        draw.cellRGB[2] = 255;
-        draw.colorStepVal = -12;
+        if (enoughSpaceR && enoughSpaceG && enoughSpaceB) {
+            draw.cellRGB[0] += deltaR;
+            draw.cellRGB[1] += deltaG;
+            draw.cellRGB[2] += deltaB;
+            done = true;
+        }
     }
-    if (draw.cellRGB[2] < 0) {
-        draw.cellRGB[2] = 0;
-        draw.colorStepVal = 12;
-    }
-
 
     draw.dynamicTheme.cellColor = rgbToHex(draw.cellRGB[0], draw.cellRGB[1], draw.cellRGB[2]);
 }
