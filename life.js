@@ -204,10 +204,14 @@ window.onload = function () {
     //color control:
     previousTheme.onclick = function () {
         draw.previousTheme();
-    }    
+    }
 
     nextTheme.onclick = function () {
         draw.nextTheme();
+    }
+
+    dynamicTheme.onclick = function () {
+        draw.setDynamicTheme();
     }
 
 
