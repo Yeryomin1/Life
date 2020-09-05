@@ -3,15 +3,15 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
 ## Current features
 * FPS control
 * Random seeding of live cells with adjustable density
-* Adding a pattern to a point with custom coordinates:
-  * glider
-  * small exploder
-  * Grosper glider gun
-  * individual cell
+* Adding patterns to points with custom coordinates:
+  * gliders
+  * small exploders
+  * Grosper glider guns
+  * individual cells
 * The population graph (shows the population according to the last 100 generations)
 * Customizing the color themes including setting up a dynamic theme
 ## Screenshot
 ![](screen.png "")
 ## Dynamic color theme
-Dynamic theme mode provides smooth color change
+Dynamic theme mode provides smooth color change.
 ![](dynamic_color.gif "")
