@@ -9,6 +9,9 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
   * Grosper glider gun
   * individual cell
 * The population graph (shows the population according to the last 100 generations)
-* Customizing the color theme
+* Customizing the color themes including setting up a dynamic theme
 ## Screenshot
 ![](screen.png "")
+## Dynamic color theme
+Dynamic theme mode provides smooth color change
+![](dynamic_color.gif "")
