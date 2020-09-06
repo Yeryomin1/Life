@@ -54,6 +54,17 @@ draw.setDynamicTheme = function () {
     if (!(draw.staticColorTheme)) {
         draw.dynamicTheme = draw.themes[draw.currentThemeNum];
         hexToRgb(draw.dynamicTheme.cellColor.slice(1), draw.cellRGB);
+        let y = 0.2126 * draw.cellRGB[0] + 0.7152 * draw.cellRGB[1] + 0.0722 * draw.cellRGB[2];
+        if (y > 0.95) {
+            draw.cellRGB[0] -= draw.colorStepVal;
+            draw.cellRGB[1] -= draw.colorStepVal;
+            draw.cellRGB[2] -= draw.colorStepVal;
+        }
+        if (y < 0.05) {
+            draw.cellRGB[0] += draw.colorStepVal;
+            draw.cellRGB[1] += draw.colorStepVal;
+            draw.cellRGB[2] += draw.colorStepVal;
+        }
     }
 }
 //color dynamics:
