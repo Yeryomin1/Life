@@ -165,6 +165,15 @@ window.onload = function () {
         patterns.random(game.model, intensity);
     }
 
+    zoomIn.onclick = function () {
+        draw.zoomIn();
+    }
+
+    zoomOut.onclick = function () {
+        draw.zoomOut();
+    }
+
+
     //patterns adding:
     addGlider.onclick = function () {
         let userX = Number(prompt("Enter the abscissa of the upper-left corner of the glider", String(WORLD_WIDTH * 0.5 - 2))) - 1;

@@ -2,7 +2,7 @@
 const CANVAS_WIDTH = 640;
 const CANVAS_HEIGHT = 480;
 //размер ячейки в пикселях:
-const CELL_SIZE = 10;
+const CELL_SIZE = 5;
 //размеры поля в ячейках:
 const WORLD_WIDTH = CANVAS_WIDTH / CELL_SIZE;
 const PLOT_HEIGHT = 100;//высота графика в пикселях
