@@ -180,14 +180,14 @@ draw.drawGrid = function (cellSize, thickness, gridColor) {
     this.ctx.strokeStyle = gridColor;
     this.ctx.lineCap = "butt";
 
-    for (let count = 0; count < WORLD_WIDTH; count++) {
+    for (let count = 0; count <= WORLD_WIDTH - 2 * draw.displacementX; count++) {
         this.ctx.moveTo(cellSize * count, 0);
-        this.ctx.lineTo(cellSize * count, cellSize * WORLD_HEIGHT);
+        this.ctx.lineTo(cellSize * count, cellSize * (WORLD_HEIGHT - 2 * draw.displacementY));
         this.ctx.stroke();
     }
-    for (count = 0; count <= WORLD_HEIGHT; count++) {
+    for (count = 0; count <= WORLD_HEIGHT - 2 * draw.displacementY; count++) {
         this.ctx.moveTo(0, cellSize * count);
-        this.ctx.lineTo(cellSize * WORLD_WIDTH, cellSize * count);
+        this.ctx.lineTo(cellSize * (WORLD_WIDTH - 2 * draw.displacementX), cellSize * count);
         this.ctx.stroke();
     }
 }
