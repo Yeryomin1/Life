@@ -6,6 +6,8 @@ draw.zoomIn = function () {
     if (draw.zoom < 10) {
         draw.zoom++;
         draw.cellSize = CELL_SIZE * draw.zoom;
+        draw.displacementX = Math.floor(0.5 * WORLD_WIDTH * (draw.zoom - 1) / draw.zoom);
+        draw.displacementY = Math.floor(0.5 * WORLD_HEIGHT * (draw.zoom - 1) / draw.zoom);
     }
     else alert("Maximum zoom reached");
 }
@@ -14,6 +16,8 @@ draw.zoomOut = function () {
     if (draw.zoom > 1) {
         draw.zoom--;
         draw.cellSize = CELL_SIZE * draw.zoom;
+        draw.displacementX = Math.floor(0.5 * WORLD_WIDTH * (draw.zoom - 1) / draw.zoom);
+        draw.displacementY = Math.floor(0.5 * WORLD_HEIGHT * (draw.zoom - 1) / draw.zoom);
     }
     else alert("Basic zoom reached");
 }
@@ -28,6 +32,8 @@ draw.init = function (canvas) {
     draw.colorStepVal = 20;
     draw.cellSize = CELL_SIZE;
     draw.zoom = 1;
+    draw.displacementX = 0;
+    draw.displacementY = 0;
     //static color themes:    
     draw.themes =
         [{ gridColor: "#000000", cellColor: "#505050", background: "#ffffff" },
@@ -147,11 +153,9 @@ draw.render = function (array) {
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
-    let displacementX = Math.floor(0.5 * WORLD_WIDTH * (draw.zoom - 1) / draw.zoom);
-    let displacementY = Math.floor(0.5 * WORLD_HEIGHT * (draw.zoom - 1) / draw.zoom);
     for (i = 0; i < Math.ceil(WORLD_WIDTH / draw.zoom); i++)
         for (j = 0; j < Math.ceil(WORLD_HEIGHT / draw.zoom); j++) {
-            if (array[i + displacementX][j + displacementY] == 1) {
+            if (array[i + draw.displacementX][j + draw.displacementY] == 1) {
                 draw.drawCell(i, j, draw.cellSize, this.cellColor());
             }
         }
