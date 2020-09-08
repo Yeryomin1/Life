@@ -149,7 +149,7 @@ draw.render = function (array) {
     if (!draw.staticColorTheme) draw.colorStep();
     draw.canvas.style.background = this.backgroundColor();
     this.drawArray(array);
-    this.drawGrid(draw.cellSize, this.gridColor());
+    this.drawGrid(this.gridColor());
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
@@ -173,7 +173,7 @@ draw.drawCell = function (xPos, yPos, cellSize, cellColor) {
     this.ctx.stroke();
 }
 //функция рисования сетки:
-draw.drawGrid = function (cellSize, gridColor) {
+draw.drawGrid = function (gridColor) {
     this.ctx.beginPath();
     //настройка линии:            
     this.ctx.lineWidth = this.zoom;
@@ -181,13 +181,13 @@ draw.drawGrid = function (cellSize, gridColor) {
     this.ctx.lineCap = "butt";
 
     for (let count = 0; count <= WORLD_WIDTH - 2 * draw.displacementX; count++) {
-        this.ctx.moveTo(cellSize * count, 0);
-        this.ctx.lineTo(cellSize * count, cellSize * (WORLD_HEIGHT - 2 * draw.displacementY));
+        this.ctx.moveTo(draw.cellSize * count, 0);
+        this.ctx.lineTo(draw.cellSize * count, draw.cellSize * (WORLD_HEIGHT - 2 * draw.displacementY));
         this.ctx.stroke();
     }
     for (count = 0; count <= WORLD_HEIGHT - 2 * draw.displacementY; count++) {
-        this.ctx.moveTo(0, cellSize * count);
-        this.ctx.lineTo(cellSize * (WORLD_WIDTH - 2 * draw.displacementX), cellSize * count);
+        this.ctx.moveTo(0, draw.cellSize * count);
+        this.ctx.lineTo(draw.cellSize * (WORLD_WIDTH - 2 * draw.displacementX), draw.cellSize * count);
         this.ctx.stroke();
     }
 }
