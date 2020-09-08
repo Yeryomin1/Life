@@ -50,6 +50,8 @@ draw.init = function (canvas) {
         { gridColor: "#2d3439", cellColor: "#f4cb67", background: "#c6ccd2" },
         ];
     draw.currentThemeNum = 0;
+    draw.canvas.style.background = this.backgroundColor();
+    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
 }
 //dynamic color theme:
 //Color format functions:
@@ -137,17 +139,20 @@ draw.backgroundColor = function () {
 draw.nextTheme = function () {
     if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
     else this.currentThemeNum = 0;
+    draw.canvas.style.background = this.backgroundColor();
+    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
 }
 
 draw.previousTheme = function () {
     if (this.currentThemeNum > 0) this.currentThemeNum--;
     else this.currentThemeNum = this.themes.length - 1;
+    draw.canvas.style.background = this.backgroundColor();
+    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
 }
 
 //функция рисования всего:
 draw.render = function (array) {
     if (!draw.staticColorTheme) draw.colorStep();
-    draw.canvas.style.background = this.backgroundColor();
     this.drawArray(array);
     this.drawGrid();
 }
