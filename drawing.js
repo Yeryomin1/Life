@@ -149,7 +149,7 @@ draw.render = function (array) {
     if (!draw.staticColorTheme) draw.colorStep();
     draw.canvas.style.background = this.backgroundColor();
     this.drawArray(array);
-    this.drawGrid(draw.cellSize, this.zoom, this.gridColor());
+    this.drawGrid(draw.cellSize, this.gridColor());
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
@@ -173,10 +173,10 @@ draw.drawCell = function (xPos, yPos, cellSize, cellColor) {
     this.ctx.stroke();
 }
 //функция рисования сетки:
-draw.drawGrid = function (cellSize, thickness, gridColor) {
+draw.drawGrid = function (cellSize, gridColor) {
     this.ctx.beginPath();
     //настройка линии:            
-    this.ctx.lineWidth = thickness;
+    this.ctx.lineWidth = this.zoom;
     this.ctx.strokeStyle = gridColor;
     this.ctx.lineCap = "butt";
 
