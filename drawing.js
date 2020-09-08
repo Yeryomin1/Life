@@ -149,7 +149,7 @@ draw.render = function (array) {
     if (!draw.staticColorTheme) draw.colorStep();
     draw.canvas.style.background = this.backgroundColor();
     this.drawArray(array);
-    this.drawGrid(draw.cellSize, 1, this.gridColor());
+    this.drawGrid(draw.cellSize, this.zoom, this.gridColor());
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {
