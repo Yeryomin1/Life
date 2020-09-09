@@ -51,6 +51,8 @@ draw.init = function (canvas) {
         ];
     draw.currentThemeNum = 0;
     draw.canvas.style.background = this.backgroundColor();
+    draw.canvas.style.border = 
+    "4px double " + draw.themes[draw.currentThemeNum].cellColor;
     document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
 }
 //dynamic color theme:
@@ -116,6 +118,7 @@ draw.colorStep = function () {
     }
 
     draw.dynamicTheme.cellColor = rgbToHex(draw.cellRGB[0], draw.cellRGB[1], draw.cellRGB[2]);
+    draw.canvas.style.border = "4px double " + draw.cellColor();
 }
 
 
@@ -137,17 +140,26 @@ draw.backgroundColor = function () {
 
 
 draw.nextTheme = function () {
+    if (draw.staticColorTheme){
     if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
     else this.currentThemeNum = 0;
     draw.canvas.style.background = this.backgroundColor();
-    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
+    draw.canvas.style.border = "4px double " + draw.cellColor();
+    document.body.style.background = draw.gridColor();
+}
+else alert("To change the theme, disable dynamic mode");
 }
 
 draw.previousTheme = function () {
-    if (this.currentThemeNum > 0) this.currentThemeNum--;
-    else this.currentThemeNum = this.themes.length - 1;
-    draw.canvas.style.background = this.backgroundColor();
-    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
+    if (draw.staticColorTheme){
+        if (this.currentThemeNum > 0) this.currentThemeNum--;
+        else this.currentThemeNum = this.themes.length - 1;
+        draw.canvas.style.background = this.backgroundColor();
+        draw.canvas.style.border = "4px double " + draw.cellColor();
+        document.body.style.background = draw.gridColor();       
+    }
+    else alert("To change the theme, disable dynamic mode");
+
 }
 
 //функция рисования всего:
