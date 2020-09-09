@@ -51,9 +51,11 @@ draw.init = function (canvas) {
         ];
     draw.currentThemeNum = 0;
     draw.canvas.style.background = this.backgroundColor();
-    draw.canvas.style.border = 
-    "4px double " + draw.themes[draw.currentThemeNum].cellColor;
+    draw.canvas.style.border =
+        "4px double " + draw.themes[draw.currentThemeNum].cellColor;
     document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
+    draw.modal = document.getElementById("modalWindow");
+    draw.modal.style.background = this.backgroundColor() + "8c";
 }
 //dynamic color theme:
 //Color format functions:
@@ -140,25 +142,27 @@ draw.backgroundColor = function () {
 
 
 draw.nextTheme = function () {
-    if (draw.staticColorTheme){
-    if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
-    else this.currentThemeNum = 0;
-    draw.canvas.style.background = this.backgroundColor();
-    draw.canvas.style.border = "4px double " + draw.cellColor();
-    document.body.style.background = draw.gridColor();
-}
-else alert("To change the theme, disable dynamic mode");
+    if (draw.staticColorTheme) {
+        if (this.currentThemeNum < this.themes.length - 1) this.currentThemeNum++;
+        else this.currentThemeNum = 0;
+        draw.canvas.style.background = this.backgroundColor();
+        draw.canvas.style.border = "4px double " + draw.cellColor();
+        document.body.style.background = draw.gridColor();
+        draw.modal.style.background = this.backgroundColor() + "99";
+    }
+    else alert("Disable dynamic mode to change the theme.");
 }
 
 draw.previousTheme = function () {
-    if (draw.staticColorTheme){
+    if (draw.staticColorTheme) {
         if (this.currentThemeNum > 0) this.currentThemeNum--;
         else this.currentThemeNum = this.themes.length - 1;
         draw.canvas.style.background = this.backgroundColor();
         draw.canvas.style.border = "4px double " + draw.cellColor();
-        document.body.style.background = draw.gridColor();       
+        document.body.style.background = draw.gridColor();
+        draw.modal.style.background = this.backgroundColor() + "8c";
     }
-    else alert("To change the theme, disable dynamic mode");
+    else alert("Disable dynamic mode to change the theme.");
 
 }
 
