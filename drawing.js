@@ -3,7 +3,7 @@ let draw = {};
 
 
 draw.zoomIn = function () {
-    if (draw.zoom < 10) {
+    if (draw.zoom < 5) {
         draw.zoom++;
         draw.cellSize = CELL_SIZE * draw.zoom;
         draw.displacementX = Math.floor(0.5 * WORLD_WIDTH * (draw.zoom - 1) / draw.zoom);
@@ -175,7 +175,7 @@ draw.render = function (array) {
 //функция рисования массива:  
 draw.drawArray = function (array) {
     for (i = 0; i < Math.ceil(WORLD_WIDTH / draw.zoom); i++)
-        for (j = 0; j < Math.ceil(WORLD_HEIGHT / draw.zoom); j++) {
+        for (j = 0; j < Math.ceil(WORLD_HEIGHT / draw.zoom) - ((draw.zoom == 3 || draw.zoom == 5) ? 1 : 0); j++) {
             if (array[i + draw.displacementX][j + draw.displacementY] == 1) {
                 draw.drawCell(i, j);
             }
@@ -203,10 +203,10 @@ draw.drawGrid = function () {
 
     for (let count = 0; count <= WORLD_WIDTH - 2 * draw.displacementX; count++) {
         this.ctx.moveTo(draw.cellSize * count, 0);
-        this.ctx.lineTo(draw.cellSize * count, draw.cellSize * (WORLD_HEIGHT - 2 * draw.displacementY));
+        this.ctx.lineTo(draw.cellSize * count, draw.cellSize * (WORLD_HEIGHT - 2 * draw.displacementY - ((draw.zoom > 2) ? 1 : 0)));
         this.ctx.stroke();
     }
-    for (count = 0; count <= WORLD_HEIGHT - 2 * draw.displacementY; count++) {
+    for (count = 0; count <= WORLD_HEIGHT - 2 * draw.displacementY - ((draw.zoom > 2) ? 1 : 0); count++) {
         this.ctx.moveTo(0, draw.cellSize * count);
         this.ctx.lineTo(draw.cellSize * (WORLD_WIDTH - 2 * draw.displacementX), draw.cellSize * count);
         this.ctx.stroke();
