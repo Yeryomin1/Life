@@ -1,7 +1,43 @@
 
 let draw = {};
 
+draw.init = function (canvas) {
+    draw.canvas = canvas;
+    draw.ctx = canvas.getContext("2d");
+    draw.staticColorTheme = true;
+    draw.cellRGB = [100, 100, 100];
+    draw.colorStepVal = 20;
+    draw.cellSize = CELL_SIZE;
+    draw.zoom = 1;
 
+    //where is the  viewport:
+    draw.displacementX = 0;
+    draw.displacementY = 0;
+    draw.moveX = 0;
+    draw.moveY = 0;
+    //static color themes:    
+    draw.themes =
+        [{ gridColor: "#000000", cellColor: "#505050", background: "#ffffff" },
+        { gridColor: "#283905", cellColor: "#98d023", background: "#fbfc37" },
+        { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
+        { gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
+        { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
+        { gridColor: "#ffffff", cellColor: "#29b297", background: "#ffffff" },
+        { gridColor: "#ffffff", cellColor: "#ffffff", background: "#29b297" },
+        { gridColor: "#ffffff", cellColor: "#ffffff", background: "#502542" },
+        { gridColor: "#ffffff", cellColor: "#ffffff", background: "#e41c2a" },
+        { gridColor: "#fbbe18", cellColor: "#e94a54", background: "#20252a" },
+        { gridColor: "#2c73b8", cellColor: "#e41d23", background: "#202230" },
+        { gridColor: "#2d3439", cellColor: "#f4cb67", background: "#c6ccd2" },
+        ];
+    draw.currentThemeNum = 0;
+    draw.canvas.style.background = this.backgroundColor();
+    draw.canvas.style.border =
+        "4px double " + draw.themes[draw.currentThemeNum].cellColor;
+    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
+    draw.modal = document.getElementById("modalWindow");
+    draw.modal.style.background = this.backgroundColor() + "8c";
+}
 draw.zoomIn = function () {
     if (draw.zoom < 5) {
         draw.moveX = 0;
@@ -57,43 +93,6 @@ draw.move = function (moveX, moveY) {
 
 }
 
-
-
-draw.init = function (canvas) {
-    draw.canvas = canvas;
-    draw.ctx = canvas.getContext("2d");
-    draw.staticColorTheme = true;
-    draw.cellRGB = [100, 100, 100];
-    draw.colorStepVal = 20;
-    draw.cellSize = CELL_SIZE;
-    draw.zoom = 1;
-    draw.displacementX = 0;
-    draw.displacementY = 0;
-    draw.moveX = 0;
-    draw.moveY = 0;
-    //static color themes:    
-    draw.themes =
-        [{ gridColor: "#000000", cellColor: "#505050", background: "#ffffff" },
-        { gridColor: "#283905", cellColor: "#98d023", background: "#fbfc37" },
-        { gridColor: "#26295a", cellColor: "#e4524f", background: "#f3e737" },
-        { gridColor: "#fdd816", cellColor: "#212a31", background: "#ffffff" },
-        { gridColor: "#f8af42", cellColor: "#27509e", background: "#ffffff" },
-        { gridColor: "#ffffff", cellColor: "#29b297", background: "#ffffff" },
-        { gridColor: "#ffffff", cellColor: "#ffffff", background: "#29b297" },
-        { gridColor: "#ffffff", cellColor: "#ffffff", background: "#502542" },
-        { gridColor: "#ffffff", cellColor: "#ffffff", background: "#e41c2a" },
-        { gridColor: "#fbbe18", cellColor: "#e94a54", background: "#20252a" },
-        { gridColor: "#2c73b8", cellColor: "#e41d23", background: "#202230" },
-        { gridColor: "#2d3439", cellColor: "#f4cb67", background: "#c6ccd2" },
-        ];
-    draw.currentThemeNum = 0;
-    draw.canvas.style.background = this.backgroundColor();
-    draw.canvas.style.border =
-        "4px double " + draw.themes[draw.currentThemeNum].cellColor;
-    document.body.style.background = draw.themes[draw.currentThemeNum].gridColor;
-    draw.modal = document.getElementById("modalWindow");
-    draw.modal.style.background = this.backgroundColor() + "8c";
-}
 //dynamic color theme:
 //Color format functions:
 //RGB->hex:
