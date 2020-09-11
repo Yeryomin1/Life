@@ -222,7 +222,28 @@ window.onload = function () {
     dynamicTheme.onclick = function () {
         draw.setDynamicTheme();
     }
+    //keyboard:
+    game.handle = function (e) {
+        //alert(e.key);
+        switch (e.key) {
+            case "ArrowUp":
+                draw.move(0, -1);
+                break;
+            case "ArrowDown":
+                draw.move(0, 1);
+                break;
+            case "ArrowLeft":
+                draw.move(-1, 0);
+                break;
+            case "ArrowRight":
+                draw.move(1, 0);
+                break;
+            default:
+                alert("key pressed");
 
+        }
+    }
+    window.onkeydown = window.onkeyup = window.onkeypress = game.handle;
 
     //цикл игры: 
 
