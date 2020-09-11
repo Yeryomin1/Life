@@ -222,28 +222,28 @@ window.onload = function () {
     dynamicTheme.onclick = function () {
         draw.setDynamicTheme();
     }
+
+
+
     //keyboard:
-    game.handle = function (e) {
-        //alert(e.key);
-        switch (e.key) {
-            case "ArrowUp":
+    document.addEventListener('keydown', function (event) {
+        switch (event.code) {
+            case "KeyW":
                 draw.move(0, -1);
                 break;
-            case "ArrowDown":
+            case "KeyS":
                 draw.move(0, 1);
                 break;
-            case "ArrowLeft":
+            case "KeyA":
                 draw.move(-1, 0);
                 break;
-            case "ArrowRight":
+            case "KeyD":
                 draw.move(1, 0);
                 break;
-            default:
-                alert("key pressed");
 
         }
-    }
-    window.onkeydown = window.onkeyup = window.onkeypress = game.handle;
+    });
+
 
     //цикл игры: 
 
