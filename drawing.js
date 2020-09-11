@@ -40,8 +40,6 @@ draw.init = function (canvas) {
 }
 draw.zoomIn = function () {
     if (draw.zoom < 5) {
-        draw.moveX = 0;
-        draw.moveY = 0;
         draw.zoom++;
         draw.cellSize = CELL_SIZE * draw.zoom;
         draw.displacementX = Math.floor(0.5 * WORLD_WIDTH * (draw.zoom - 1) / draw.zoom);
@@ -52,12 +50,27 @@ draw.zoomIn = function () {
 
 draw.zoomOut = function () {
     if (draw.zoom > 1) {
-        draw.moveX = 0;
-        draw.moveY = 0;
         draw.zoom--;
         draw.cellSize = CELL_SIZE * draw.zoom;
         draw.displacementX = Math.floor(0.5 * WORLD_WIDTH * (draw.zoom - 1) / draw.zoom);
         draw.displacementY = Math.floor(0.5 * WORLD_HEIGHT * (draw.zoom - 1) / draw.zoom);
+
+        //left border reached:
+        if (draw.displacementX + draw.moveX < 0) {
+            draw.moveX = (-1) * draw.displacementX;
+        }
+        //right border reached:     
+        if (draw.displacementX < draw.moveX) {
+            draw.moveX = draw.displacementX;
+        }
+        //top border reached:      
+        if (draw.displacementY + draw.moveY < 0) {
+            draw.moveY = (-1) * draw.displacementY;
+        }
+        //bottom border reached:     
+        if (draw.displacementY < draw.moveY) {
+            draw.moveY = draw.displacementY;
+        }
     }
     else alert("Basic zoom reached.");
 }
