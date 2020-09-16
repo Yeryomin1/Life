@@ -12,8 +12,13 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
 * Customizing the color themes including setting up a dynamic theme
 * Zooming
 * The viewport moving using WASD
-## Screenshot
+## Screenshots
+### General
+The game as a whole looks like this.
 ![](screen.png "")
-## Dynamic color theme
+### Dynamic color theme
 Dynamic theme mode provides smooth color change.
 ![](dynamic_color.gif "")
+### Zooming and WASD
+The execution of zooming in, out, and moving the viewport is shown below.
+![](zooming.gif "")
