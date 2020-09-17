@@ -1,5 +1,5 @@
 # Life
-Simple javascript and HTML5's canvas Conway's Game of Life with visualization of the current population data. The population graph is an updated column plot. Graph update frequency is equal to current game fps.
+Simple javascript and HTML5's canvas Conway's Game of Life with visualization of the current population data. The population graph is an updated column plot. 
 ## Current features
 * FPS control
 * Random seeding of live cells with adjustable density
@@ -16,6 +16,9 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
 ### General
 The game as a whole looks like this.
 ![](screen.png "")
+### Population graph
+The graph update frequency is equal to current game fps.
+![](population_plot.gif "")
 ### Dynamic color theme
 Dynamic theme mode provides smooth color change.
 ![](dynamic_color.gif "")
