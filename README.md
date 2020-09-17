@@ -17,7 +17,7 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
 The game as a whole looks like this.
 ![](screen.png "")
 ### Population graph
-The graph update frequency is equal to current game fps.
+The graph update frequency is equal to current game fps, which is equal to the generation refresh rate. The ordinate axis is scaled automatically in accordance with the maximum display level of the population.
 ![](population_plot.gif "")
 ### Dynamic color theme
 Dynamic theme mode provides smooth color change.
