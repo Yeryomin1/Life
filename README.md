@@ -23,5 +23,5 @@ The graph update frequency is equal to current game fps, which is equal to the g
 Dynamic theme mode provides smooth color change.
 ![](dynamic_color.gif "")
 ### Zooming and WASD
-The execution of zooming in, out, and moving the viewport is shown below.
+The execution of zooming in, out, and moving the viewport is shown below.  
 ![](zooming.gif "")
