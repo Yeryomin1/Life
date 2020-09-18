@@ -223,8 +223,6 @@ window.onload = function () {
         draw.setDynamicTheme();
     }
 
-
-
     //keyboard:
     document.addEventListener('keydown', function (event) {
         switch (event.code) {
@@ -244,6 +242,13 @@ window.onload = function () {
         }
     });
 
+    // mouse:
+    canvas.addEventListener('mousedown', function (event) {
+        let x = event.pageX - event.target.offsetLeft;
+        let y = event.pageY - event.target.offsetTop;
+        let cell = draw.getCellWithPix(x, y);
+        patterns.cell(game.model, cell.x, WORLD_HEIGHT - cell.y);
+    });
 
     //цикл игры: 
 

@@ -215,6 +215,28 @@ draw.previousTheme = function () {
 
 }
 
+//взятие ячейки по координатам одного из ее пикселей:
+draw.getCellWithPix = function (pixX, pixY) {
+    let cell = {};
+    let offset;//алгоритм вертикального смещения сделан на глаз
+    switch (draw.zoom) {
+        case 3:
+            offset = 0.5;
+            break;
+        case 4:
+            offset = 1;
+            break;
+        case 5:
+            offset = 0.8;
+            break;
+        default:
+            offset = 0;
+    }
+    cell.x = Math.floor((pixX - 5) / draw.cellSize + draw.displacementX + draw.moveX);
+    cell.y = Math.ceil(WORLD_HEIGHT / draw.zoom - (pixY - 5) / draw.cellSize + draw.displacementY - draw.moveY + offset);
+    return cell;
+}
+
 //функция рисования всего:
 draw.render = function (array) {
     if (!draw.staticColorTheme) draw.colorStep();
