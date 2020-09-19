@@ -1,5 +1,5 @@
 # Life
-Simple javascript and HTML5's canvas Conway's Game of Life with visualization of the current population data. The population graph is an updated column plot. 
+Simple javascript and HTML5's canvas Conway's Game of Life with visualization of the current population data. The population graph is an updated column plot.   [View online](https://yeryomin1.github.io/Life/).
 ## Current features
 * FPS control
 * Random seeding of live cells with adjustable density

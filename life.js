@@ -122,7 +122,7 @@ window.onload = function () {
         return result;
     }
 
-
+    
     //обработка нажатий на кнопки:
     //главное меню:
     setStop.onclick = function () {
