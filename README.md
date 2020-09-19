@@ -16,16 +16,16 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
 ## Screenshots
 ### General
 The game as a whole looks like this.  
-![](screen.png "")
+![](images/screen.png "")
 ### Drawing with the mouse
 A live cell is created by clicking the left mouse button.  
-![](mouse_drawing.gif "")
+![](images/mouse_drawing.gif "")
 ### Population graph
 The graph update frequency is equal to current game fps, which is equal to the generation refresh rate. The ordinate axis is scaled automatically in accordance with the maximum display level of the population.  
-![](population_plot.gif "")
+![](images/population_plot.gif "")
 ### Dynamic color theme
 Dynamic theme mode provides smooth color change.  
-![](dynamic_color.gif "")
+![](images/dynamic_color.gif "")
 ### Zooming and WASD
 The execution of zooming in, out, and moving the viewport is shown below.  
-![](zooming.gif "")
+![](images/zooming.gif "")
