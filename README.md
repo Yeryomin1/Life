@@ -7,7 +7,7 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
 * Adding patterns to points with custom coordinates:
   * gliders
   * small exploders
-  * Grosper glider guns
+  * Gosper glider guns
   * individual cells
 * The population graph (shows the population according to the last 100 generations)
 * Customizing the color themes including setting up a dynamic theme
