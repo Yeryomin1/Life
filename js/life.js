@@ -7,19 +7,26 @@ window.onload = function () {
 
     //массив клеток:
     let arr = [];
+    let sumArr = [];
     let i = 0;
     let j = 0;
 
-    for (; i < WORLD_WIDTH; i++)
+    for (; i < WORLD_WIDTH; i++) {
         arr.push([]);
+        sumArr.push([]);
+    }
+
     for (i = 0; i < WORLD_WIDTH; i++)
-        for (j = 0; j < WORLD_HEIGHT; j++)
+        for (j = 0; j < WORLD_HEIGHT; j++) {
             arr[i].push(0);
+            sumArr[i].push(0);
+        }
     //объекты:
     let game = {};
 
     //поля:        
     game.model = arr;//сделать "закрытым" полем
+    game.sumArr = sumArr;
     game._stop = true;
     game._freq = 2;        //частота обновления:
     game.prescribedFreq = 2;
@@ -71,8 +78,7 @@ window.onload = function () {
         //перерисовка:
         draw.render(game.model);
         plot.draw(game.plotData, game.stepNum, context, draw.gridColor(), draw.cellColor());
-        game.model = game.nextGenerationModel();
-
+        game.nextGenerationModel();
 
 
         //time auto control:
@@ -98,31 +104,28 @@ window.onload = function () {
         //проверка состояния "Пауза":
         if (game._stop) return this.model;
         game.stepNum++;
+
         //реализуются правила игры:
-        let result = [];
-        for (let i = 0; i < this.model.length; i++)
-            result.push(this.model[i].slice());
         let total = 0;
-        let summs = summArray(this.model);
+        game.updateSummArray();
         for (i = 0; i < WORLD_WIDTH; i++)
             for (j = 0; j < WORLD_HEIGHT; j++) {
                 if (this.model[i][j] == 1) {
-                    if (summs[i][j] != 2 && summs[i][j] != 3)
-                        result[i][j] = 0;
+                    if (game.sumArr[i][j] != 2 && game.sumArr[i][j] != 3)
+                        this.model[i][j] = 0;
                     else total++;
                 }
-                else if (summs[i][j] == 3) {
-                    result[i][j] = 1;
+                else if (game.sumArr[i][j] == 3) {
+                    this.model[i][j] = 1;
                     total++;
                 }
             }
 
         if (game.stepNum > 100) game.plotData.shift();
         game.plotData.push(total);
-        return result;
     }
 
-    
+
     //обработка нажатий на кнопки:
     //главное меню:
     setStop.onclick = function () {
@@ -255,21 +258,14 @@ window.onload = function () {
     let interval = setInterval(game.run, 1000 / game._freq);
 
     //глобальные функции(не сделать ли методами?)
-    function summArray(array) {
-        let res = [];
-        for (let i = 0; i < array.length; i++)
-            res.push(array[i].slice());
-
+    game.updateSummArray = function () {
         for (i = 1; i < WORLD_WIDTH - 1; i++)//перебор игнорирует граничные столбцы и строки, чтобы не цеплять undefined
             for (j = 1; j < WORLD_HEIGHT - 1; j++) {
-                res[i][j] = array[i - 1][j - 1] + array[i][j - 1] + array[i + 1][j - 1] +
-                    array[i - 1][j] + array[i + 1][j] +
-                    array[i - 1][j + 1] + array[i][j + 1] + array[i + 1][j + 1];
+                game.sumArr[i][j] = game.model[i - 1][j - 1] + game.model[i][j - 1] + game.model[i + 1][j - 1] +
+                    game.model[i - 1][j] + game.model[i + 1][j] +
+                    game.model[i - 1][j + 1] + game.model[i][j + 1] + game.model[i + 1][j + 1];
             }
-        return res;
     }
-
-
 
     //модальное окно для управления:
     game.windows._modal = document.getElementById("modalWindow");
