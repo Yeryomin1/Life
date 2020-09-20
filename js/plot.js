@@ -83,7 +83,7 @@ plot.drawAxisY = function (color) {
     plot.ctx.fillStyle = color;
     plot.ctx.font = "10pt Arial";
     for (let i = 1; i < labels; i++) {
-        plot.ctx.fillText(i * plot.yRange / labels, 10, CANVAS_HEIGHT - plot.originY - i * scoreStep + 5);
+        plot.ctx.fillText(i * plot.yRange / labels, 5, CANVAS_HEIGHT - plot.originY - i * scoreStep + 5);
     }
 
 }
