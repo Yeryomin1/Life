@@ -57,7 +57,7 @@ plot.drawAxisX = function (stepsNumber, color) {
     for (let i = 1; i < 6; i++) {
         plot.ctx.fillText(displacement + i * plot.xRange / 5, plot.originX + i * scoreStep - 5, CANVAS_HEIGHT - plot.originY + labelLength / 2 + 12);
     }
-
+    plot.ctx.fillText("Generation", plot.originX + 4.3 * scoreStep - 5, CANVAS_HEIGHT - plot.originY + labelLength / 2 + 12);
 
 }
 
