@@ -9,6 +9,7 @@ draw.init = function (canvas) {
     draw.colorStepVal = 20;
     draw.cellSize = CELL_SIZE;
     draw.zoom = 1;
+    draw.hasGrid = true;
 
     //where is the  viewport:
     draw.displacementX = 0;
@@ -215,6 +216,12 @@ draw.previousTheme = function () {
 
 }
 
+//настроить видимость сетки:
+draw.setGridVisibility = function () {
+    draw.hasGrid = !(draw.hasGrid);
+}
+
+
 //взятие ячейки по координатам одного из ее пикселей:
 draw.getCellWithPix = function (pixX, pixY) {
     let cell = {};
@@ -241,7 +248,7 @@ draw.getCellWithPix = function (pixX, pixY) {
 draw.render = function (array) {
     if (!draw.staticColorTheme) draw.colorStep();
     this.drawArray(array);
-    this.drawGrid();
+    if (draw.hasGrid) this.drawGrid();
 }
 //функция рисования массива:  
 draw.drawArray = function (array) {

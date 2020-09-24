@@ -226,6 +226,10 @@ window.onload = function () {
         draw.setDynamicTheme();
     }
 
+    showGrid.onclick = function () {
+        draw.setGridVisibility();
+    }
+
     //keyboard:
     document.addEventListener('keydown', function (event) {
         switch (event.code) {
