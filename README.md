@@ -11,6 +11,7 @@ Simple javascript and HTML5's canvas Conway's Game of Life with visualization of
   * individual cells
 * The population graph (shows the population according to the last 100 generations)
 * Customizing the color themes including setting up a dynamic theme
+* Grid visibility change option
 * Zooming
 * The viewport moving using WASD
 ## Screenshots
